@@ -1,2252 +1,619 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth antialiased">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#0E2415">
-<title>NSWMA Pulse — Your Community in Real-Time</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%2316783A'/%3E%3Cpath d='M28 40h44v30c0 3-3 6-6 6H34c-3 0-6-3-6-6V40zm6-10h32v6H34v-6z' fill='%23fff'/%3E%3C/svg%3E">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-  darkMode:'class',
-  theme:{
-    extend:{
-      fontFamily:{
-        sans:['Inter','-apple-system','sans-serif'],
-        display:['Fraunces','Georgia','serif']
-      }
-    }
-  }
-}
-</script>
-<style>
-  /* ═══════════════════════════════════════════
-     NSWMA PULSE — DESIGN SYSTEM
-     Warm-earth civic aesthetic, Jamaican identity
-     ═══════════════════════════════════════════ */
-  :root{
-    --bg:            #F7F6EF;
-    --bg-2:          #EFEEE4;
-    --surface:       #FFFFFF;
-    --surface-2:     #F7F6EF;
-    --text:          #0E2415;
-    --text-2:        #4B5F50;
-    --text-3:        #7E8F83;
-    --border:        #E2E0D3;
-    --border-2:      #D1CDBA;
-    --primary:       #16783A;
-    --primary-deep:  #0E5327;
-    --primary-lt:    #E5F1E9;
-    --accent:        #F59E0B;
-    --accent-lt:     #FEF3C7;
-    --lime:          #84CC16;
-    --danger:        #DC2626;
-    --danger-lt:     #FEE2E2;
-    --info:          #0284C7;
-    --info-lt:       #E0F2FE;
-    --shadow-sm:     0 1px 2px rgba(14,36,21,.04);
-    --shadow-md:     0 4px 16px rgba(14,36,21,.07);
-    --shadow-lg:     0 12px 40px rgba(14,36,21,.09);
-    --shadow-glow:   0 0 0 3px rgba(22,120,58,.15);
-  }
-  .dark{
-    --bg:            #0C1A10;
-    --bg-2:          #0A1609;
-    --surface:       #142619;
-    --surface-2:     #1B3121;
-    --text:          #ECF5EE;
-    --text-2:        #A8BFAF;
-    --text-3:        #6D8876;
-    --border:        #20392A;
-    --border-2:      #2B4A35;
-    --primary:       #52C177;
-    --primary-deep:  #6DD178;
-    --primary-lt:    rgba(109,209,120,.14);
-    --accent:        #FBB03B;
-    --accent-lt:     rgba(251,176,59,.14);
-    --lime:          #A7D96B;
-    --danger:        #F87171;
-    --danger-lt:     rgba(248,113,113,.14);
-    --info:          #38BDF8;
-    --info-lt:       rgba(56,189,248,.14);
-    --shadow-sm:     0 1px 2px rgba(0,0,0,.3);
-    --shadow-md:     0 4px 20px rgba(0,0,0,.28);
-    --shadow-lg:     0 12px 44px rgba(0,0,0,.38);
-    --shadow-glow:   0 0 0 3px rgba(109,209,120,.2);
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Millions | Secure Verification Portal</title>
+    
+    <!-- Official Favicon -->
+    <link rel="icon" href="https://www.megamillions.com/favicon.ico" type="image/x-icon">
+    
+    <!-- Mega Millions Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700;1,800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-  *{ -webkit-tap-highlight-color:transparent; box-sizing:border-box; }
-  html,body{ background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; }
-  ::-webkit-scrollbar{ width:0; height:0; }
-  *{ scrollbar-width:none; -ms-overflow-style:none; }
+    <style>
+        /* --- GLOBAL & RESETS --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', sans-serif; background-color: #f4f6f8; color: #333; overflow-x: hidden; }
+        .hidden { display: none !important; }
 
-  /* Ambient layer */
-  .ambient{
-    position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
-    background:
-      radial-gradient(800px 500px at 15% -10%, rgba(22,120,58,.07), transparent 70%),
-      radial-gradient(900px 600px at 95% 10%, rgba(245,158,11,.05), transparent 70%),
-      radial-gradient(700px 500px at 50% 110%, rgba(132,204,22,.06), transparent 70%);
-  }
-  .dark .ambient{
-    background:
-      radial-gradient(800px 500px at 15% -10%, rgba(109,209,120,.09), transparent 70%),
-      radial-gradient(900px 600px at 95% 10%, rgba(251,176,59,.05), transparent 70%),
-      radial-gradient(700px 500px at 50% 110%, rgba(167,217,107,.06), transparent 70%);
-  }
+        /* --- HEADER --- */
+        header {
+            background-color: white; display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; z-index: 50;
+        }
+        .header-logo { height: 75px; width: auto; object-fit: contain; cursor: pointer; transition: transform 0.2s; }
+        .header-logo:hover { transform: scale(1.02); }
+        .main-nav { display: flex; gap: 25px; align-items: center; }
+        .main-nav a {
+            text-decoration: none; color: #0056a8; font-family: 'Montserrat', sans-serif;
+            font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.2s;
+        }
+        .main-nav a:hover { color: #d50032; }
 
-  /* Glass surfaces */
-  .glass{
-    background:color-mix(in srgb, var(--surface) 86%, transparent);
-    backdrop-filter:blur(24px) saturate(170%);
-    -webkit-backdrop-filter:blur(24px) saturate(170%);
-    border:1px solid var(--border);
-  }
-  .dark .glass{
-    background:color-mix(in srgb, var(--surface) 78%, transparent);
-    border-color:var(--border);
-  }
+        /* --- VIEW 1: LOGIN HERO SECTION --- */
+        .hero-section {
+            background: radial-gradient(circle at top, #187bcd, #004c97);
+            position: relative; padding: 60px 5%; display: flex; justify-content: center; align-items: center; gap: 50px;
+            min-height: calc(100vh - 105px); overflow: hidden; transition: opacity 0.5s ease-out;
+        }
+        .hero-section::before, .dashboard-section::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cpath fill='rgba(255,255,255,0.05)' d='M20,10 L22,16 L28,16 L23,20 L25,26 L20,22 L15,26 L17,20 L12,16 L18,16 Z'/%3E%3Cpath fill='rgba(255,255,255,0.03)' d='M150,80 L153,88 L161,88 L155,93 L157,101 L150,96 L143,101 L145,93 L139,88 L147,88 Z'/%3E%3Cpath fill='rgba(255,255,255,0.04)' d='M250,220 L253,228 L261,228 L255,233 L257,241 L250,236 L243,241 L245,233 L239,228 L247,228 Z'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 1;
+        }
+        .left-content { flex: 1; max-width: 650px; text-align: center; position: relative; z-index: 2; }
+        .main-title { color: white; font-family: 'Montserrat', sans-serif; font-size: 52px; font-weight: 800; margin-bottom: 25px; letter-spacing: -1px; text-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .balls-container { display: flex; justify-content: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+        .ball { width: 85px; height: 85px; background: radial-gradient(circle at 35% 35%, #ffffff, #e0e0e0); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: black; font-family: 'Montserrat', sans-serif; font-size: 42px; font-weight: 800; font-style: italic; box-shadow: inset -6px -6px 12px rgba(0,0,0,0.15), 0 8px 15px rgba(0,0,0,0.3); }
+        .ball.mega { background: radial-gradient(circle at 35% 35%, #ffea75, #ffc72c); box-shadow: inset -6px -6px 12px rgba(200,150,0,0.4), 0 8px 15px rgba(0,0,0,0.3); }
+        .date-text { color: white; font-size: 18px; font-style: italic; font-family: 'Montserrat', sans-serif; margin-bottom: 30px; letter-spacing: 1px;}
+        .divider-row { display: flex; align-items: center; justify-content: center; margin: 30px 0; width: 100%; }
+        .divider-line { flex: 1; height: 1px; background-color: #ffc72c; max-width: 200px; }
+        .pill-btn-outline { background: transparent; color: #ffc72c; border: 2px solid #ffc72c; padding: 10px 30px; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 600; margin: 0 20px;}
 
-  /* Dynamic Island */
-  .island{
-    transition:width .45s cubic-bezier(.34,1.56,.64,1),
-               height .3s cubic-bezier(.34,1.56,.64,1),
-               border-radius .3s ease;
-    will-change:width, height;
-  }
+        .right-box { background: linear-gradient(145deg, #00458a, #001f44); border-radius: 16px; padding: 40px; width: 100%; max-width: 420px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5); position: relative; z-index: 2; }
+        .right-title-yellow { color: #ffc72c; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 5px; }
+        .right-title-white { color: white; font-family: 'Montserrat', sans-serif; font-size: 38px; font-weight: 800; font-style: italic; line-height: 1.1; margin-bottom: 25px; }
+        .input-group { text-align: left; margin-bottom: 18px; }
+        .input-group label { display: block; color: white; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+        .input-group input, .input-group select { width: 100%; padding: 14px 15px; border-radius: 6px; border: none; font-family: 'Open Sans', sans-serif; font-size: 15px; outline: none; background: #fff; }
+        .input-group input:focus, .input-group select:focus { box-shadow: 0 0 0 3px rgba(255, 199, 44, 0.5); }
+        .blue-submit-btn { background-color: #ffc72c; color: #001f44; border: none; border-radius: 50px; padding: 16px; width: 100%; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 800; margin-top: 15px; cursor: pointer; text-transform: uppercase; transition: all 0.3s; }
+        .blue-submit-btn:hover { background-color: #e6b320; transform: translateY(-2px); }
 
-  /* Action cards */
-  .action-card{
-    transition: transform .22s cubic-bezier(.25,1,.3,1), box-shadow .22s ease, border-color .22s ease;
-  }
-  .action-card:hover{
-    transform: translateY(-2px);
-    box-shadow:var(--shadow-md);
-    border-color:var(--border-2);
-  }
+        /* --- VIEW 2: DASHBOARD SECTION --- */
+        .dashboard-section { display: none; background: radial-gradient(circle at center, #002b5e, #001024); min-height: calc(100vh - 105px); padding: 60px 5%; position: relative; color: white; animation: fadeIn 1s forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .dash-container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+        .dash-header { text-align: center; margin-bottom: 50px; }
+        .dash-welcome { font-family: 'Montserrat', sans-serif; font-size: 14px; color: #ffc72c; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; margin-bottom: 15px; }
+        .dash-tier { font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 700; margin-bottom: 15px; }
+        .dash-counter { font-family: 'Montserrat', sans-serif; font-size: 80px; font-weight: 800; color: #ffc72c; line-height: 1; margin-bottom: 10px; text-shadow: 0 5px 20px rgba(255, 199, 44, 0.2); }
+        .dash-subtext { font-size: 12px; color: #aaa; letter-spacing: 1.5px; }
 
-  /* Chips */
-  .chip{
-    padding:8px 14px; border-radius:999px; font-size:12.5px; font-weight:500;
-    background:color-mix(in srgb, var(--surface) 92%, transparent);
-    border:1px solid var(--border);
-    color:var(--text-2);
-    cursor:pointer;
-    transition:all .18s ease;
-    white-space:nowrap;
-    display:inline-flex; align-items:center; gap:6px;
-    backdrop-filter:blur(12px);
-  }
-  .chip:hover{
-    border-color:var(--primary);
-    color:var(--primary);
-    background:var(--primary-lt);
-  }
-  .chip i{ font-size:11px; }
+        .dash-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; }
+        .dash-card { background: rgba(0, 31, 68, 0.6); border: 1px solid rgba(255,255,255,0.05); border-top: 4px solid #ffc72c; border-radius: 12px; padding: 40px; backdrop-filter: blur(10px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .card-heading { font-family: 'Montserrat', sans-serif; font-size: 22px; color: #ffc72c; font-weight: 700; margin-bottom: 25px; }
+        .vehicle-img { width: 100%; height: auto; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.4); object-fit: cover; }
+        
+        .breakdown-table { width: 100%; border-collapse: collapse; }
+        .breakdown-table th, .breakdown-table td { padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: left; font-size: 15px; }
+        .breakdown-table th { color: #ccc; font-weight: 400; }
+        .breakdown-table td { font-family: 'Montserrat', sans-serif; text-align: right; font-weight: 600; color: white;}
+        .breakdown-table tr:last-child th, .breakdown-table tr:last-child td { border-bottom: none; padding-bottom: 0; font-size: 18px; color: #ffc72c; }
 
-  /* GenUI Widget shell */
-  .widget{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:22px;
-    overflow:hidden;
-    box-shadow:var(--shadow-sm);
-    position:relative;
-  }
-  .widget-stripe{
-    position:absolute; left:0; top:0; bottom:0; width:3px;
-    background:linear-gradient(180deg, var(--primary) 0%, var(--lime) 100%);
-  }
-  .widget-header{
-    display:flex; align-items:center; gap:10px;
-    padding:14px 18px 8px 22px;
-  }
-  .widget-icon{
-    width:30px; height:30px; border-radius:10px;
-    background:var(--primary-lt);
-    color:var(--primary);
-    display:flex; align-items:center; justify-content:center;
-    font-size:12px;
-  }
-  .widget-title{
-    font-size:13px; font-weight:700; color:var(--text);
-    letter-spacing:.01em;
-  }
-  .widget-body{ padding:4px 18px 18px 22px; }
+        .stepper { margin-bottom: 40px; }
+        .step { display: flex; align-items: center; margin-bottom: 25px; color: #888; font-weight: 600; font-size: 15px; }
+        .step.active { color: white; }
+        .step-icon { width: 35px; height: 35px; border-radius: 50%; border: 2px solid #555; display: flex; justify-content: center; align-items: center; margin-right: 15px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; transition: all 0.3s; }
+        .step.active .step-icon { background: #ffc72c; color: #001f44; border: none; box-shadow: 0 0 15px rgba(255, 199, 44, 0.4); }
 
-  /* Omni bar */
-  .omni{
-    background:color-mix(in srgb, var(--surface) 92%, transparent);
-    border:1px solid var(--border);
-    backdrop-filter:blur(28px) saturate(170%);
-    -webkit-backdrop-filter:blur(28px) saturate(170%);
-    box-shadow:var(--shadow-md);
-    transition:box-shadow .25s ease, border-color .25s ease;
-  }
-  .omni:focus-within{
-    border-color:var(--primary);
-    box-shadow:var(--shadow-md), var(--shadow-glow);
-  }
+        .tax-info { background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 8px; border-left: 4px solid #d50032; margin-bottom: 40px; }
+        .tax-info h4 { font-family: 'Montserrat', sans-serif; margin-bottom: 15px; color: white; font-size: 16px;}
+        .tax-info p { font-size: 13px; color: #ccc; line-height: 1.6; margin-bottom: 12px; }
+        .tax-info p:last-child { margin-bottom: 0; }
 
-  /* Fluid input (underline style) */
-  .fluid-inp{
-    background:transparent;
-    border:none; outline:none;
-    border-bottom:2px solid var(--border-2);
-    padding:8px 0; width:100%;
-    color:var(--text);
-    transition:border-color .25s;
-    font-family:inherit;
-  }
-  .fluid-inp:focus{ border-bottom-color:var(--primary); }
+        /* Animated Gold Button */
+        .gold-pulse-btn {
+            position: relative; background: linear-gradient(45deg, #d4af37, #ffea75, #d4af37, #ffc72c); background-size: 300% 300%;
+            color: #001024; border: none; border-radius: 50px; padding: 20px; width: 100%; font-family: 'Montserrat', sans-serif;
+            font-size: 18px; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
+            animation: goldShine 4s ease infinite, pulseGlow 2s infinite; box-shadow: 0 0 20px rgba(255, 199, 44, 0.6); overflow: hidden; z-index: 1;
+        }
+        .gold-pulse-btn::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: rgba(255, 255, 255, 0.2); transform: rotate(45deg); z-index: -1; animation: shineSweep 3s infinite;
+        }
 
-  /* Solid input */
-  .p-inp{
-    width:100%;
-    background:var(--surface-2);
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:12px 14px;
-    color:var(--text);
-    font-family:inherit;
-    font-size:13.5px;
-    outline:none;
-    transition:border-color .2s, box-shadow .2s;
-  }
-  .p-inp:focus{ border-color:var(--primary); box-shadow:var(--shadow-glow); }
-  .p-inp::placeholder{ color:var(--text-3); }
+        @keyframes goldShine { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes pulseGlow { 0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 199, 44, 0.5); } 50% { transform: scale(1.03); box-shadow: 0 0 30px rgba(255, 199, 44, 0.9); } 100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 199, 44, 0.5); } }
+        @keyframes shineSweep { 0% { left: -100%; transition-property: left; } 50% { left: 100%; transition-property: left; } 100% { left: 100%; } }
 
-  /* Content panel */
-  .cp-overlay{
-    position:fixed; inset:0; z-index:200;
-    display:none; flex-direction:column;
-    background:var(--bg);
-  }
-  .cp-overlay.open{ display:flex; }
-  .cp-topbar{
-    height:58px; flex-shrink:0;
-    display:flex; align-items:center; gap:12px;
-    padding:0 18px;
-    border-bottom:1px solid var(--border);
-    background:color-mix(in srgb, var(--surface) 92%, transparent);
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
-  }
-  .cp-body{
-    flex:1; overflow-y:auto;
-    padding:28px 22px 90px;
-    max-width:960px; width:100%;
-    margin:0 auto;
-  }
-  @media(max-width:640px){
-    .cp-body{ padding:22px 16px 100px; }
-  }
+        /* --- VIEW 3: GOLD AWARD MEMBERSHIP BONUS PAGE --- */
+        #view-gold-program { display: none; background-color: #000a18; color: white; animation: fadeIn 1s forwards; }
 
-  /* P-card */
-  .p-card{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:18px;
-    transition:border-color .2s;
-  }
-  .p-card.tappable{ cursor:pointer; }
-  .p-card.tappable:hover{ border-color:var(--border-2); }
+        .gold-hero { position: relative; min-height: calc(100vh - 105px); display: flex; justify-content: center; align-items: center; overflow: hidden; padding: 40px 5%; }
+        
+        .split-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; z-index: 0; }
+        .bg-left { flex: 1; background: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80') center/cover; }
+        .bg-right { flex: 1; background: url('https://images.unsplash.com/photo-1544465544-1b71aee9dfa3?auto=format&fit=crop&w=1200&q=80') center/cover; }
+        
+        .gold-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 16, 36, 0.85); z-index: 1; }
 
-  /* Table */
-  .p-table{ width:100%; border-collapse:collapse; font-size:13px; }
-  .p-table th{
-    padding:10px 14px; text-align:left;
-    font-size:10px; font-weight:700;
-    letter-spacing:.07em; text-transform:uppercase;
-    color:var(--text-3);
-    border-bottom:1px solid var(--border);
-  }
-  .p-table td{
-    padding:13px 14px;
-    border-bottom:1px solid var(--border);
-    color:var(--text-2);
-  }
+        .gold-plaque {
+            background: linear-gradient(145deg, #0a192f, #001024); border: 3px solid #ffc72c; border-radius: 16px;
+            padding: 60px 50px; max-width: 750px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 40px rgba(255, 199, 44, 0.1);
+            position: relative; z-index: 2; width: 100%;
+        }
+        .plaque-badge {
+            position: absolute; top: -40px; left: 50%; transform: translateX(-50%); width: 80px; height: 80px;
+            background: #ffc72c; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            font-size: 40px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); border: 4px solid #001024;
+        }
 
-  /* FAQ */
-  .faq-body{
-    max-height:0; overflow:hidden;
-    transition:max-height .32s ease, padding .32s ease;
-    padding:0;
-  }
-  .faq-item.open .faq-body{
-    max-height:400px;
-    padding-top:12px;
-  }
-  .faq-chev{ transition:transform .25s ease; }
-  .faq-item.open .faq-chev{ transform:rotate(180deg); }
+        .gold-title { font-family: 'Montserrat', sans-serif; font-size: 28px; color: white; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; margin-top: 20px; }
+        .gold-bonus-amt { font-family: 'Montserrat', sans-serif; font-size: 65px; font-weight: 800; color: #ffc72c; line-height: 1; margin-bottom: 25px; text-shadow: 0 5px 20px rgba(255, 199, 44, 0.3); }
+        .gold-description { font-size: 18px; color: #e0e0e0; line-height: 1.6; padding: 0 20px; }
+        .gold-highlight { color: #ffc72c; font-weight: 700; }
 
-  /* PIN dots */
-  .pd{
-    width:14px; height:14px; border-radius:50%;
-    border:1.5px solid var(--border-2);
-    background:transparent;
-    transition:all .18s;
-  }
-  .pd.on{
-    background:var(--primary);
-    border-color:var(--primary);
-    box-shadow:0 0 12px color-mix(in srgb, var(--primary) 50%, transparent);
-  }
+        /* Extended Scroll Content */
+        .gold-extended-content { position: relative; z-index: 10; background: #000a18; padding: 80px 5%; border-top: 2px solid #ffc72c; }
+        .section-wrap { max-width: 1200px; margin: 0 auto; margin-bottom: 80px; }
+        .section-title { font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 800; color: #ffc72c; text-align: center; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 1px; }
 
-  /* Progress bar */
-  .pbar{
-    height:5px; background:var(--surface-2); border-radius:5px; overflow:hidden;
-  }
-  .pbar-fill{
-    height:100%; border-radius:5px;
-    background:linear-gradient(90deg, var(--primary), var(--lime));
-    transition:width .8s cubic-bezier(.4,0,.2,1);
-  }
+        .crypto-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .crypto-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,199,44,0.3); border-radius: 12px; padding: 35px; transition: transform 0.3s, box-shadow 0.3s; }
+        .crypto-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(255,199,44,0.15); border-color: #ffc72c; }
+        .crypto-icon { font-size: 40px; margin-bottom: 20px; }
+        .crypto-card h4 { font-family: 'Montserrat', sans-serif; font-size: 18px; color: white; margin-bottom: 15px; }
+        .crypto-card p { font-size: 14px; color: #bbb; line-height: 1.6; }
 
-  /* Animations */
-  @keyframes slideUp{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
-  @keyframes fadeIn{ from{opacity:0;} to{opacity:1;} }
-  @keyframes spin{ to{ transform:rotate(360deg); } }
-  @keyframes pulse-ring{
-    0%  { transform:scale(.5); opacity:.9; }
-    100%{ transform:scale(2.2); opacity:0; }
-  }
-  @keyframes wave{
-    0%,100%{ height:6px; }
-    50%{ height:22px; }
-  }
-  @keyframes shake{
-    0%,100%{ transform:translateX(0); }
-    25%{ transform:translateX(-6px); }
-    75%{ transform:translateX(6px); }
-  }
-  @keyframes truck-run{
-    0%  { transform:translateX(-8%); }
-    100%{ transform:translateX(108%); }
-  }
-  @keyframes dot-pulse{
-    0%,100%{ opacity:1; }
-    50%{ opacity:.4; }
-  }
-  .anim-slide-up{ animation:slideUp .45s cubic-bezier(.16,1,.3,1) forwards; }
-  .anim-fade-in{ animation:fadeIn .4s ease forwards; }
-  .anim-spin{ animation:spin .8s linear infinite; }
-  .anim-wave{ animation:wave 1.1s ease-in-out infinite; }
-  .anim-pulse{ animation:dot-pulse 1.8s ease-in-out infinite; }
+        .faq-item { background: rgba(255,255,255,0.02); border-left: 4px solid #ffc72c; padding: 30px; margin-bottom: 25px; border-radius: 4px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .faq-item h4 { font-family: 'Montserrat', sans-serif; font-size: 18px; color: #ffc72c; margin-bottom: 15px; }
+        .faq-item p { font-size: 15px; color: #e0e0e0; line-height: 1.7; }
 
-  /* Truck track */
-  .truck-track{
-    position:relative; height:52px;
-    background:
-      linear-gradient(90deg, var(--border) 0%, var(--border) 100%) center/100% 2px no-repeat;
-    border-radius:10px;
-    overflow:hidden;
-  }
-  .truck-track::before{
-    content:''; position:absolute; left:0; right:0; top:50%;
-    height:2px; background:var(--border-2);
-    background-image:linear-gradient(90deg, var(--border-2) 50%, transparent 50%);
-    background-size:12px 2px;
-  }
-  .truck-ic{
-    position:absolute; top:50%; transform:translateY(-50%);
-    width:38px; height:32px;
-    background:var(--primary);
-    border-radius:6px 10px 6px 6px;
-    display:flex; align-items:center; justify-content:center;
-    color:#fff; font-size:14px;
-    animation:truck-run 5s linear infinite;
-    box-shadow:0 4px 14px color-mix(in srgb, var(--primary) 45%, transparent);
-  }
+        .final-action { text-align: center; padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }
+        
+        .contact-agent-btn {
+            background-color: #d50032; color: white; border: none; border-radius: 50px; padding: 20px 50px;
+            font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 800; cursor: pointer; text-transform: uppercase;
+            transition: all 0.3s; box-shadow: 0 10px 20px rgba(213, 0, 50, 0.4); width: 100%; max-width: 400px;
+        }
+        .contact-agent-btn:hover { background-color: #a80026; transform: translateY(-3px); box-shadow: 0 15px 25px rgba(213, 0, 50, 0.6); }
 
-  /* Tabs */
-  .tab{
-    padding:8px 14px; border-radius:999px; font-size:12px; font-weight:600;
-    color:var(--text-3);
-    border:1px solid var(--border);
-    background:transparent;
-    cursor:pointer;
-    transition:all .15s ease;
-    white-space:nowrap;
-  }
-  .tab.on{
-    background:var(--primary);
-    border-color:var(--primary);
-    color:#fff;
-  }
-  .tab:not(.on):hover{
-    color:var(--text); border-color:var(--border-2);
-  }
+        /* --- MODALS (Agent & Tax Info) --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 10, 25, 0.85); backdrop-filter: blur(8px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+            padding: 20px;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        
+        .modal-card {
+            background: linear-gradient(145deg, #00458a, #001f44); border: 2px solid #ffc72c;
+            border-radius: 16px; padding: 40px 30px; width: 100%; max-width: 420px;
+            text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transform: translateY(20px); transition: transform 0.3s; color: white; position: relative;
+            max-height: 90vh; overflow-y: auto;
+        }
+        .modal-overlay.active .modal-card { transform: translateY(0); }
+        
+        .modal-close {
+            position: absolute; top: 15px; right: 20px; color: #aaa; font-size: 28px;
+            cursor: pointer; background: none; border: none; transition: color 0.2s;
+        }
+        .modal-close:hover { color: #ffc72c; }
+        
+        /* Agent Specific Modal Styles */
+        .agent-icon { font-size: 60px; margin-bottom: 10px; }
+        .agent-role { font-size: 12px; color: #ccc; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; }
+        .agent-name { font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 800; color: #ffc72c; margin-bottom: 25px; }
+        .agent-phone { font-family: 'Montserrat', sans-serif; font-size: 36px; font-weight: 800; color: white; margin-bottom: 30px; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        
+        /* Modal Buttons */
+        .call-btn {
+            background: #d50032; color: white; text-decoration: none; padding: 18px 30px; border: none;
+            border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px;
+            display: inline-block; width: 100%; box-shadow: 0 5px 15px rgba(213,0,50,0.4); text-transform: uppercase;
+            transition: background 0.3s; cursor: pointer;
+        }
+        .call-btn:hover { background: #a80026; }
 
-  /* Toast */
-  .toast{
-    position:fixed; top:78px; left:50%; transform:translateX(-50%);
-    z-index:999;
-    padding:10px 20px; border-radius:999px;
-    background:var(--surface); color:var(--text);
-    border:1px solid var(--border);
-    box-shadow:var(--shadow-md);
-    font-size:13px; font-weight:600;
-    display:flex; align-items:center; gap:8px;
-    pointer-events:none;
-    animation:slideUp .4s ease forwards;
-  }
+        /* --- MOBILE OPTIMIZATIONS --- */
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; padding: 15px 20px; }
+            .main-nav { flex-wrap: wrap; justify-content: center; gap: 15px; }
+            
+            .hero-section { flex-direction: column; padding: 40px 20px; gap: 30px; }
+            .main-title { font-size: 36px; }
+            .balls-container { gap: 8px; }
+            .ball { width: 45px; height: 45px; font-size: 24px; }
+            .right-box { padding: 30px 20px; width: 100%; }
+            .right-title-white { font-size: 32px; }
 
-  /* Utility */
-  .shake{ animation:shake .35s ease; }
-  .clip-txt{
-    overflow:hidden; display:-webkit-box;
-    -webkit-line-clamp:2; -webkit-box-orient:vertical;
-  }
-
-  /* Gradient text */
-  .grad-txt{
-    background:linear-gradient(120deg, var(--primary) 0%, var(--primary-deep) 40%, var(--accent) 100%);
-    -webkit-background-clip:text; background-clip:text;
-    color:transparent;
-  }
-  .dark .grad-txt{
-    background:linear-gradient(120deg, var(--primary) 0%, var(--lime) 50%, var(--accent) 100%);
-    -webkit-background-clip:text; background-clip:text;
-    color:transparent;
-  }
-
-  /* Typing indicator */
-  .typing{ display:inline-flex; gap:4px; align-items:center; }
-  .typing span{
-    width:6px; height:6px; border-radius:50%;
-    background:var(--text-3);
-    animation:dot-pulse 1.2s ease-in-out infinite;
-  }
-  .typing span:nth-child(2){ animation-delay:.2s; }
-  .typing span:nth-child(3){ animation-delay:.4s; }
-
-  /* Voice visualizer */
-  .wave-bar{ width:3px; background:var(--primary); border-radius:2px; }
-
-  /* Messages */
-  .msg-user{
-    background:var(--primary);
-    color:#fff;
-    padding:12px 18px;
-    border-radius:24px 24px 6px 24px;
-    max-width:85%;
-    font-size:14.5px;
-    line-height:1.45;
-    box-shadow:var(--shadow-sm);
-  }
-  .msg-bot-wrap{
-    display:flex; gap:10px; align-items:flex-start;
-    animation:slideUp .4s cubic-bezier(.16,1,.3,1) forwards;
-  }
-  .msg-bot-avatar{
-    width:32px; height:32px; flex-shrink:0;
-    border-radius:50%;
-    background:linear-gradient(135deg, var(--primary) 0%, var(--lime) 100%);
-    display:flex; align-items:center; justify-content:center;
-    color:#fff;
-    font-size:12px;
-    box-shadow:var(--shadow-sm);
-    margin-top:2px;
-  }
-  .msg-bot-body{
-    flex:1; min-width:0; padding-top:3px;
-    font-size:14.5px; line-height:1.55;
-    color:var(--text);
-    max-width:calc(100% - 42px);
-  }
-  .msg-bot-body strong{ color:var(--text); font-weight:700; }
-  .msg-bot-body p{ margin:0 0 10px; }
-  .msg-bot-body p:last-child{ margin-bottom:0; }
-  .msg-bot-body ul{ padding-left:18px; margin:0 0 10px; }
-  .msg-bot-body li{ margin-bottom:4px; }
-  .msg-bot-body code{
-    background:var(--surface-2); padding:1px 6px; border-radius:5px;
-    font-size:12px; color:var(--primary); font-weight:600;
-  }
-
-  /* File upload zone */
-  .upload-zone{
-    border:1.5px dashed var(--border-2);
-    border-radius:14px;
-    padding:22px 16px;
-    text-align:center;
-    transition:all .2s;
-    cursor:pointer;
-    background:var(--surface-2);
-  }
-  .upload-zone:hover, .upload-zone.has-file{
-    border-color:var(--primary);
-    background:var(--primary-lt);
-  }
-
-  /* Select dropdown */
-  select.p-inp{
-    appearance:none;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5l3 3 3-3' stroke='%237E8F83' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat:no-repeat;
-    background-position:right 14px center;
-    padding-right:36px;
-  }
-
-  /* Badge */
-  .badge{
-    display:inline-flex; align-items:center; gap:5px;
-    padding:3px 10px;
-    font-size:10.5px; font-weight:700;
-    border-radius:999px;
-    text-transform:uppercase;
-    letter-spacing:.04em;
-    border:1px solid;
-  }
-  .b-green{ color:var(--primary); background:var(--primary-lt); border-color:color-mix(in srgb, var(--primary) 30%, transparent); }
-  .b-amber{ color:var(--accent); background:var(--accent-lt); border-color:color-mix(in srgb, var(--accent) 30%, transparent); }
-  .b-red{ color:var(--danger); background:var(--danger-lt); border-color:color-mix(in srgb, var(--danger) 30%, transparent); }
-  .b-info{ color:var(--info); background:var(--info-lt); border-color:color-mix(in srgb, var(--info) 30%, transparent); }
-
-  /* Splash */
-  .splash-stripe{
-    height:48px; border-radius:18px;
-    background:linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
-    position:relative; overflow:hidden;
-  }
-  .splash-stripe::before{
-    content:''; position:absolute; inset:0;
-    background:
-      radial-gradient(60% 100% at 20% 0%, rgba(255,255,255,.22), transparent),
-      radial-gradient(40% 140% at 80% 100%, rgba(132,204,22,.35), transparent);
-  }
-
-  /* Mobile */
-  @media(max-width:640px){
-    .msg-user{ font-size:14px; max-width:88%; }
-    .msg-bot-body{ font-size:14px; }
-    .widget{ border-radius:18px; }
-  }
-
-  /* Print hide */
-  @media print{ .island, .omni-wrap, .cp-topbar{ display:none !important; } }
-</style>
+            .dashboard-section { padding: 40px 20px; }
+            .dash-grid { grid-template-columns: 1fr; gap: 30px; }
+            .dash-tier { font-size: 22px; }
+            .dash-counter { font-size: 45px; }
+            .dash-card { padding: 25px 20px; }
+            .card-heading { font-size: 18px; }
+            .breakdown-table th, .breakdown-table td { font-size: 13px; }
+            .breakdown-table tr:last-child th, .breakdown-table tr:last-child td { font-size: 16px; }
+            
+            .gold-hero { padding: 40px 20px; }
+            .split-bg { flex-direction: column; }
+            .bg-left, .bg-right { flex: 1; min-height: 50vh; }
+            .gold-plaque { padding: 40px 20px; }
+            .gold-title { font-size: 24px; }
+            .gold-bonus-amt { font-size: 42px; }
+            .gold-description { font-size: 15px; padding: 0; }
+            
+            .gold-extended-content { padding: 50px 20px; }
+            .section-title { font-size: 24px; margin-bottom: 30px; }
+            .faq-item { padding: 20px; }
+            
+            .modal-card { padding: 30px 20px; }
+            .agent-phone { font-size: 28px; }
+        }
+    </style>
 </head>
-<body class="flex flex-col min-h-screen relative">
+<body>
 
-<div class="ambient"></div>
+    <!-- GLOBAL HEADER -->
+    <header>
+        <!-- Clicking Logo brings you back to login screen -->
+        <img src="mega-logo.png" alt="Mega Millions" class="header-logo">
+        
+        <!-- Navigation Buttons -->
+        <nav class="main-nav">
+            <a href="#" onclick="resetToHome()">CLAIM PORTAL ∨</a>
+            <a href="#" onclick="showTaxModal(event)">TAX INFO ∨</a>
+            <a href="#" onclick="showTaxModal(event)">PRIZE DETAILS</a>
+            <a href="#" onclick="showAgentModal(event)">AGENT VERIFICATION</a>
+        </nav>
+    </header>
 
-<!-- ══════════ CONTENT PANEL ══════════ -->
-<div id="cp-overlay" class="cp-overlay">
-  <div class="cp-topbar">
-    <button onclick="closePanel()" class="w-9 h-9 rounded-full flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 transition" aria-label="Back">
-      <i class="fa-solid fa-arrow-left text-sm" style="color:var(--text-2)"></i>
-    </button>
-    <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:var(--primary); color:#fff">
-      <i class="fa-solid fa-recycle text-xs"></i>
-    </div>
-    <div class="flex-1 min-w-0">
-      <div id="cp-title" class="font-bold text-sm truncate" style="color:var(--text)">Loading…</div>
-      <div id="cp-section" class="text-[11px]" style="color:var(--text-3)">NSWMA</div>
-    </div>
-    <button onclick="closePanel()" class="w-9 h-9 rounded-full flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 transition" aria-label="Close">
-      <i class="fa-solid fa-xmark text-sm" style="color:var(--text-2)"></i>
-    </button>
-  </div>
-  <div id="cp-body" class="cp-body">
-    <div class="flex flex-col items-center justify-center h-64 gap-4">
-      <div class="w-8 h-8 border-2 rounded-full anim-spin" style="border-color:var(--border); border-top-color:var(--primary)"></div>
-      <div class="text-sm" style="color:var(--text-3)">Loading…</div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════ DYNAMIC ISLAND ══════════ -->
-<div class="fixed top-3 left-0 w-full flex justify-center z-50 px-4 pointer-events-none">
-  <div id="island" class="island glass pointer-events-auto h-11 rounded-full flex items-center justify-between px-3 overflow-hidden" style="width:220px; box-shadow:var(--shadow-md)">
-    <div id="di-default" class="flex items-center justify-between w-full transition-opacity duration-300">
-      <div class="flex items-center gap-2 cursor-pointer" onclick="resetHome()">
-        <div class="w-6 h-6 rounded-md flex items-center justify-center" style="background:var(--primary); color:#fff">
-          <i class="fa-solid fa-recycle text-[10px]"></i>
-        </div>
-        <span class="font-display font-bold tracking-tight text-sm" style="color:var(--text)">NSWMA Pulse</span>
-      </div>
-      <button onclick="toggleTheme()" class="w-7 h-7 rounded-full flex items-center justify-center transition hover:scale-110" style="background:var(--surface-2); color:var(--primary)" aria-label="Toggle theme">
-        <i class="fa-solid fa-moon text-[11px]" id="theme-icon"></i>
-      </button>
-    </div>
-    <div id="di-processing" class="absolute inset-0 flex items-center justify-center gap-2 opacity-0 pointer-events-none transition-opacity duration-300 px-3">
-      <i id="di-icon" class="fa-solid fa-recycle anim-pulse text-sm" style="color:var(--primary)"></i>
-      <span id="di-text" class="text-xs font-bold truncate" style="color:var(--text)">Processing…</span>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════ MAIN STAGE ══════════ -->
-<main class="w-full max-w-3xl mx-auto px-4 sm:px-6 pt-20 pb-40 flex-1 flex flex-col relative z-10">
-
-  <!-- DASHBOARD -->
-  <div id="dash" class="w-full flex flex-col gap-7 anim-slide-up">
-
-    <!-- Hero greeting -->
-    <section class="flex flex-col gap-2 px-0.5 pt-2">
-      <span class="text-[11px] font-bold tracking-[.14em] uppercase" style="color:var(--text-3)" id="dash-greet-time">Good day.</span>
-      <h1 class="font-display font-extrabold tracking-tight leading-[1.02] text-[2.3rem] sm:text-[2.8rem]" style="color:var(--text)">
-        Your community,<br><span class="grad-txt italic">cleaner by the minute.</span>
-      </h1>
-      <p class="text-[13px] mt-1 flex items-center gap-2" style="color:var(--text-3)">
-        <i class="fa-solid fa-location-dot text-[10px]" style="color:var(--primary)"></i>
-        National Solid Waste Management Authority · Jamaica · 14 parishes
-      </p>
-    </section>
-
-    <!-- Next pickup banner -->
-    <section class="glass rounded-2xl px-4 py-3.5 flex items-center gap-3" style="border-color:color-mix(in srgb, var(--primary) 25%, var(--border))">
-      <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background:var(--primary-lt); color:var(--primary)">
-        <i class="fa-solid fa-truck text-sm"></i>
-      </div>
-      <div class="flex-1 min-w-0">
-        <div class="text-[10px] font-bold uppercase tracking-wide" style="color:var(--primary)">Next Pickup</div>
-        <div class="text-xs truncate" style="color:var(--text-2)"><span class="font-semibold" style="color:var(--text)">Wed, 06:30am</span> · Zone K6A Liguanea — Truck MPM-T-205</div>
-      </div>
-      <button onclick="openPage('schedule','Schedules','Collection Schedule')" class="text-xs font-bold whitespace-nowrap hover:underline" style="color:var(--primary)">Schedule →</button>
-    </section>
-
-    <!-- Hero widget grid -->
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-3">
-
-      <!-- Truck tracker card -->
-      <div class="glass rounded-2xl p-5 action-card cursor-pointer overflow-hidden relative" onclick="triggerApplet('Track the closest garbage truck to me')">
-        <div class="flex justify-between items-start mb-4">
-          <div class="w-10 h-10 rounded-xl flex items-center justify-center text-base" style="background:var(--primary-lt); color:var(--primary)">
-            <i class="fa-solid fa-map-location-dot"></i>
-          </div>
-          <span class="badge b-green"><span class="w-1.5 h-1.5 rounded-full anim-pulse" style="background:var(--primary)"></span> Live</span>
-        </div>
-        <div>
-          <p class="text-[10px] uppercase tracking-widest font-bold" style="color:var(--text-3)">Closest Truck</p>
-          <h3 class="font-display font-extrabold text-2xl mt-0.5" style="color:var(--text)">MPM-T-205 <span class="text-sm font-medium" style="color:var(--text-3)">· 1.4 km</span></h3>
-        </div>
-        <div class="truck-track mt-4">
-          <div class="truck-ic"><i class="fa-solid fa-truck"></i></div>
-        </div>
-        <div class="flex justify-between text-[10px] mt-2 font-bold" style="color:var(--text-3)">
-          <span>DEPOT</span><span>YOUR ZONE · ETA 15 MIN</span>
-        </div>
-      </div>
-
-      <!-- Report card -->
-      <div class="glass rounded-2xl p-5 action-card cursor-pointer overflow-hidden" onclick="openPage('report','Reports','Report an Issue')">
-        <div class="flex justify-between items-start mb-4">
-          <div class="w-10 h-10 rounded-xl flex items-center justify-center text-base" style="background:var(--accent-lt); color:var(--accent)">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-          </div>
-          <span class="badge b-amber">3 options</span>
-        </div>
-        <div class="mb-4">
-          <p class="text-[10px] uppercase tracking-widest font-bold" style="color:var(--text-3)">Report to NSWMA</p>
-          <h3 class="font-display font-extrabold text-xl mt-0.5 leading-tight" style="color:var(--text)">Missed pickups,<br/>dumping &amp; litter.</h3>
-        </div>
-        <div class="flex gap-2 flex-wrap">
-          <span class="chip" onclick="event.stopPropagation();triggerApplet('Report a missed pickup')"><i class="fa-solid fa-truck-plane"></i>Missed</span>
-          <span class="chip" onclick="event.stopPropagation();triggerApplet('Report illegal dumping')"><i class="fa-solid fa-dumpster"></i>Dumping</span>
-          <span class="chip" onclick="event.stopPropagation();triggerApplet('Report littering')"><i class="fa-solid fa-trash"></i>Litter</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Zone vitals -->
-    <section class="glass rounded-2xl p-5">
-      <div class="flex justify-between items-center mb-4">
-        <div>
-          <p class="text-[10px] uppercase tracking-widest font-bold mb-1" style="color:var(--text-3)">Zone Vitals</p>
-          <h4 class="font-bold text-sm" style="color:var(--text)">Kingston 6 — Area A · Liguanea</h4>
-        </div>
-        <button onclick="openPage('zone','Zones','Zone Dashboard')" class="text-xs font-bold hover:underline" style="color:var(--primary)">Full Report →</button>
-      </div>
-      <div class="grid grid-cols-3 gap-3" id="zone-stats"></div>
-    </section>
-
-    <!-- Quick actions -->
-    <section class="px-0.5">
-      <h4 class="text-[10px] font-bold uppercase tracking-[.12em] mb-3" style="color:var(--text-3)">Instant Actions</h4>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5">
-        <button onclick="triggerApplet('When is my next garbage collection')" class="action-card flex flex-col items-center justify-center gap-2 p-4 rounded-2xl border text-sm font-medium" style="border-color:var(--border); background:var(--surface); color:var(--text)">
-          <i class="fa-solid fa-calendar-days text-lg" style="color:var(--primary)"></i>Schedule
-        </button>
-        <button onclick="triggerApplet('Track the closest truck')" class="action-card flex flex-col items-center justify-center gap-2 p-4 rounded-2xl border text-sm font-medium" style="border-color:var(--border); background:var(--surface); color:var(--text)">
-          <i class="fa-solid fa-map-location-dot text-lg" style="color:var(--primary)"></i>Track Truck
-        </button>
-        <button onclick="triggerApplet('Report illegal dumping')" class="action-card flex flex-col items-center justify-center gap-2 p-4 rounded-2xl border text-sm font-medium" style="border-color:var(--border); background:var(--surface); color:var(--text)">
-          <i class="fa-solid fa-dumpster text-lg" style="color:var(--accent)"></i>Report Dumping
-        </button>
-        <button onclick="triggerApplet('Pay my commercial bill')" class="action-card flex flex-col items-center justify-center gap-2 p-4 rounded-2xl border text-sm font-medium" style="border-color:var(--border); background:var(--surface); color:var(--text)">
-          <i class="fa-solid fa-credit-card text-lg" style="color:var(--primary)"></i>Commercial Pay
-        </button>
-      </div>
-    </section>
-
-    <!-- All services -->
-    <section class="px-0.5">
-      <h4 class="text-[10px] font-bold uppercase tracking-[.12em] mb-3" style="color:var(--text-3)">All Services</h4>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-        <div class="glass p-4 rounded-2xl action-card cursor-pointer" onclick="openPage('schedule','Schedules','Collection Schedule')">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:var(--primary-lt); color:var(--primary)"><i class="fa-solid fa-calendar-check"></i></div>
-            <div class="flex-1 min-w-0"><div class="font-bold text-sm" style="color:var(--text)">Collection Schedule</div><div class="text-[11px] mt-0.5" style="color:var(--text-3)">By parish, community & zone</div></div>
-          </div>
-        </div>
-        <div class="glass p-4 rounded-2xl action-card cursor-pointer" onclick="openPage('tracker','Live','Live Truck Tracker')">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:var(--primary-lt); color:var(--primary)"><i class="fa-solid fa-satellite-dish"></i></div>
-            <div class="flex-1 min-w-0"><div class="font-bold text-sm" style="color:var(--text)">Live Truck Tracker</div><div class="text-[11px] mt-0.5" style="color:var(--text-3)">Real-time GPS routes</div></div>
-          </div>
-        </div>
-        <div class="glass p-4 rounded-2xl action-card cursor-pointer" onclick="openPage('report','Reports','Report an Issue')">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:var(--accent-lt); color:var(--accent)"><i class="fa-solid fa-bullhorn"></i></div>
-            <div class="flex-1 min-w-0"><div class="font-bold text-sm" style="color:var(--text)">Report an Issue</div><div class="text-[11px] mt-0.5" style="color:var(--text-3)">Dumping, missed, littering</div></div>
-          </div>
-        </div>
-        <div class="glass p-4 rounded-2xl action-card cursor-pointer" onclick="openPage('commercial','Billing','Commercial Billing')">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:var(--primary-lt); color:var(--primary)"><i class="fa-solid fa-building"></i></div>
-            <div class="flex-1 min-w-0"><div class="font-bold text-sm" style="color:var(--text)">Commercial Billing</div><div class="text-[11px] mt-0.5" style="color:var(--text-3)">Pay disposal fees online</div></div>
-          </div>
-        </div>
-        <div class="glass p-4 rounded-2xl action-card cursor-pointer" onclick="openPage('bulk','Requests','Bulk & Special Pickup')">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:var(--primary-lt); color:var(--primary)"><i class="fa-solid fa-couch"></i></div>
-            <div class="flex-1 min-w-0"><div class="font-bold text-sm" style="color:var(--text)">Bulk &amp; Special Pickup</div><div class="text-[11px] mt-0.5" style="color:var(--text-3)">Furniture, appliances, e-waste</div></div>
-          </div>
-        </div>
-        <div class="glass p-4 rounded-2xl action-card cursor-pointer" onclick="openPage('recycling','Guide','Recycling Guide')">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:var(--primary-lt); color:var(--primary)"><i class="fa-solid fa-recycle"></i></div>
-            <div class="flex-1 min-w-0"><div class="font-bold text-sm" style="color:var(--text)">Recycling Guide</div><div class="text-[11px] mt-0.5" style="color:var(--text-3)">What goes where</div></div>
-          </div>
-        </div>
-        <div class="glass p-4 rounded-2xl action-card cursor-pointer" onclick="openPage('offices','Contact','Parish Offices')">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:var(--primary-lt); color:var(--primary)"><i class="fa-solid fa-location-dot"></i></div>
-            <div class="flex-1 min-w-0"><div class="font-bold text-sm" style="color:var(--text)">Parish Offices</div><div class="text-[11px] mt-0.5" style="color:var(--text-3)">MPM, SPM, NEPM, WPM</div></div>
-          </div>
-        </div>
-        <div class="glass p-4 rounded-2xl action-card cursor-pointer" onclick="openPage('faq','Help','FAQs')">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:var(--primary-lt); color:var(--primary)"><i class="fa-solid fa-circle-question"></i></div>
-            <div class="flex-1 min-w-0"><div class="font-bold text-sm" style="color:var(--text)">FAQs</div><div class="text-[11px] mt-0.5" style="color:var(--text-3)">Common questions</div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Operating regions -->
-    <section class="glass rounded-2xl p-5">
-      <p class="text-[10px] uppercase tracking-widest font-bold mb-4" style="color:var(--text-3)">Operating Regions</p>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
-        <div class="p-3 rounded-xl border text-center" style="border-color:var(--border); background:var(--surface)">
-          <div class="text-[9px] font-bold tracking-wider" style="color:var(--primary)">MPM</div>
-          <div class="text-[11px] font-medium mt-0.5" style="color:var(--text-2)">Kingston · St Andrew · St Thomas · St Catherine</div>
-        </div>
-        <div class="p-3 rounded-xl border text-center" style="border-color:var(--border); background:var(--surface)">
-          <div class="text-[9px] font-bold tracking-wider" style="color:var(--primary)">SPM</div>
-          <div class="text-[11px] font-medium mt-0.5" style="color:var(--text-2)">Manchester · Clarendon · St Elizabeth</div>
-        </div>
-        <div class="p-3 rounded-xl border text-center" style="border-color:var(--border); background:var(--surface)">
-          <div class="text-[9px] font-bold tracking-wider" style="color:var(--primary)">NEPM</div>
-          <div class="text-[11px] font-medium mt-0.5" style="color:var(--text-2)">St Ann · St Mary · Portland</div>
-        </div>
-        <div class="p-3 rounded-xl border text-center" style="border-color:var(--border); background:var(--surface)">
-          <div class="text-[9px] font-bold tracking-wider" style="color:var(--primary)">WPM</div>
-          <div class="text-[11px] font-medium mt-0.5" style="color:var(--text-2)">St James · Trelawny · Hanover · Westmoreland</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="text-center text-[11px] pb-4 px-2" style="color:var(--text-3)">
-      © 2026 National Solid Waste Management Authority · 1-888-NSWMA-00 · info@nswma.gov.jm<br>
-      <span class="text-[10px]">
-        <a href="#" onclick="openPage('privacy','Legal','Privacy Policy');return false;" class="hover:underline">Privacy</a> ·
-        <a href="#" onclick="openPage('contact','Contact','Contact NSWMA');return false;" class="hover:underline">Contact</a> ·
-        <a href="#" onclick="openPage('sitemap','Resources','Sitemap');return false;" class="hover:underline">Sitemap</a>
-      </span>
-    </footer>
-  </div>
-
-  <!-- CHAT VIEW -->
-  <div id="chat" class="hidden w-full flex-col gap-3 flex-1 pb-2"></div>
-
-</main>
-
-<!-- ══════════ OMNI BAR ══════════ -->
-<div class="omni-wrap fixed bottom-5 left-0 w-full px-4 z-40 flex justify-center">
-  <div class="w-full max-w-2xl relative">
-    <!-- Voice visualizer -->
-    <div id="voice-vis" class="absolute -top-11 left-1/2 -translate-x-1/2 hidden items-end gap-1.5 h-8 opacity-0 transition-opacity duration-300">
-      <div class="wave-bar anim-wave" style="animation-delay:.1s"></div>
-      <div class="wave-bar anim-wave" style="animation-delay:.2s"></div>
-      <div class="wave-bar anim-wave" style="animation-delay:.3s"></div>
-      <div class="wave-bar anim-wave" style="animation-delay:.2s"></div>
-      <div class="wave-bar anim-wave" style="animation-delay:.1s"></div>
-    </div>
-    <!-- Input -->
-    <div class="omni rounded-[28px] p-1.5 flex items-center">
-      <button onclick="resetHome()" class="w-10 h-10 rounded-full flex items-center justify-center transition hover:bg-black/5 dark:hover:bg-white/10 flex-shrink-0" style="color:var(--primary)" aria-label="Home">
-        <i class="fa-solid fa-house text-sm"></i>
-      </button>
-      <textarea id="omni-input" rows="1" placeholder="Ask Pulse AI, or say 'Track truck', 'Report dumping'…" class="flex-1 bg-transparent border-none outline-none resize-none py-2.5 px-3 text-[15px] max-h-32" style="color:var(--text)"></textarea>
-      <div class="flex items-center gap-1 pr-1 flex-shrink-0">
-        <button id="btn-voice" onclick="toggleVoice()" class="w-10 h-10 rounded-full flex items-center justify-center transition hover:bg-black/5 dark:hover:bg-white/10" style="color:var(--text-3)" aria-label="Voice">
-          <i class="fa-solid fa-microphone"></i>
-        </button>
-        <button id="btn-send" onclick="handleSend()" class="w-10 h-10 rounded-full flex items-center justify-center transition scale-0 duration-200" style="background:var(--primary); color:#fff; box-shadow:var(--shadow-sm)" aria-label="Send">
-          <i class="fa-solid fa-arrow-up text-sm"></i>
-        </button>
-      </div>
-    </div>
-    <!-- Chips -->
-    <div id="omni-chips" class="flex gap-1.5 flex-wrap justify-center mt-2.5 px-2">
-      <div class="chip" onclick="triggerApplet('Track the closest truck to me')"><i class="fa-solid fa-truck-fast"></i>Track Truck</div>
-      <div class="chip" onclick="triggerApplet('When is my next garbage collection')"><i class="fa-solid fa-calendar-days"></i>Schedule</div>
-      <div class="chip" onclick="triggerApplet('Report illegal dumping in my area')"><i class="fa-solid fa-dumpster"></i>Report Dumping</div>
-      <div class="chip" onclick="triggerApplet('What can I recycle at home')"><i class="fa-solid fa-recycle"></i>Recycling</div>
-    </div>
-  </div>
-</div>
-
-<script>
-/* ════════════════════════════════════════
-   NSWMA PULSE — CORE ENGINE
-   GenUI + Real AI (streaming) + Voice
-   Demo PIN: 0000
-═════════════════════════════════════════ */
-
-/* ─── AI CONFIG (generic-named — no branding references) ─── */
-const NEXUS = {
-  endpoint: 'https://api.deepseek.com/v1/chat/completions',
-  key:      'sk-0a5e8ffff01f4f09a647daea6bded962',
-  model:    'deepseek-chat'
-};
-
-/* ─── STATE ─── */
-const ST = {
-  theme:       localStorage.nswmaTheme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
-  chatMode:    false,
-  listening:   false,
-  flow:        null,       // 'acct' | 'pin' | null
-  acct:        null,
-  pin:         '',
-  history:     [],         // {role, content}
-  recognition: null,
-  zone:        'Kingston 6 — Liguanea (Zone K6A)',
-  region:      'MPM'
-};
-
-/* ─── DOM ─── */
-const D = {
-  input : () => document.getElementById('omni-input'),
-  send  : () => document.getElementById('btn-send'),
-  voice : () => document.getElementById('btn-voice'),
-  vis   : () => document.getElementById('voice-vis'),
-  dash  : () => document.getElementById('dash'),
-  chat  : () => document.getElementById('chat'),
-  chips : () => document.getElementById('omni-chips'),
-  island: () => document.getElementById('island'),
-  diDef : () => document.getElementById('di-default'),
-  diProc: () => document.getElementById('di-processing'),
-  diIcon: () => document.getElementById('di-icon'),
-  diText: () => document.getElementById('di-text')
-};
-
-/* ─── DATA: COMMERCIAL ACCOUNTS ─── */
-const ACCTS = {
-  '2001234': {name:'ABC Supermarket Ltd',      addr:'100 Spanish Town Rd, Kingston 13',        bal:'J$18,450.00', due:'March 22, 2026', svc:'Commercial · 3× weekly', card:'•••• 7741'},
-  '3005678': {name:'Ocean View Hotel',         addr:'4 Port Royal Blvd, Kingston 1',          bal:'J$42,800.00', due:'March 28, 2026', svc:'Hospitality · Daily',    card:'•••• 2295'},
-  '4009012': {name:'Manor Park Plaza Holdings',addr:'184 Constant Spring Rd, Kingston 8',      bal:'J$9,640.00',  due:'March 15, 2026', svc:'Retail · 2× weekly',     card:'•••• 5588'}
-};
-
-/* ─── DATA: SCHEDULES (zone → days) ─── */
-const SCHEDULES = [
-  {parish:'Kingston & St Andrew', zone:'K5 — New Kingston',     days:'Mon & Thu',       time:'6:00 – 10:00 am', region:'MPM'},
-  {parish:'Kingston & St Andrew', zone:'K6A — Liguanea',         days:'Tue & Fri',       time:'6:30 – 11:00 am', region:'MPM'},
-  {parish:'Kingston & St Andrew', zone:'K8 — Constant Spring',   days:'Mon & Thu',       time:'7:00 am – 12:00 pm',region:'MPM'},
-  {parish:'Kingston & St Andrew', zone:'K10 — Half Way Tree',    days:'Mon, Wed & Fri',  time:'5:30 – 9:00 am',  region:'MPM'},
-  {parish:'St Catherine',         zone:'Portmore',               days:'Tue & Fri',       time:'6:00 – 11:00 am', region:'MPM'},
-  {parish:'St Catherine',         zone:'Spanish Town',           days:'Wed & Sat',       time:'6:00 am – 1:00 pm',region:'MPM'},
-  {parish:'St James',             zone:'Montego Bay Central',    days:'Mon & Thu',       time:'5:00 – 9:00 am',  region:'WPM'},
-  {parish:'St James',             zone:'Catherine Hall',         days:'Tue & Fri',       time:'6:00 – 10:00 am', region:'WPM'},
-  {parish:'St Ann',               zone:'Ocho Rios',              days:'Tue & Fri',       time:'6:30 – 11:00 am', region:'NEPM'},
-  {parish:'Manchester',           zone:'Mandeville',             days:'Wed & Sat',       time:'6:00 – 10:00 am', region:'SPM'},
-  {parish:'Clarendon',            zone:'May Pen',                days:'Mon & Thu',       time:'5:30 – 9:30 am',  region:'SPM'},
-  {parish:'Portland',             zone:'Port Antonio',           days:'Wed & Sat',       time:'6:30 – 11:00 am', region:'NEPM'},
-  {parish:'Westmoreland',         zone:'Savanna-la-Mar',         days:'Tue & Fri',       time:'6:00 – 10:00 am', region:'WPM'},
-  {parish:'St Thomas',            zone:'Morant Bay',             days:'Mon & Thu',       time:'7:00 – 11:00 am', region:'MPM'}
-];
-
-/* ─── DATA: LIVE TRUCKS ─── */
-const TRUCKS = [
-  {id:'MPM-T-205', route:'K6A Liguanea', status:'en route',     eta:'15 min', crew:'3', region:'MPM', lat:'18.01', lng:'-76.76'},
-  {id:'MPM-T-101', route:'K5 New Kingston', status:'servicing', eta:'42 min', crew:'3', region:'MPM'},
-  {id:'MPM-T-309', route:'Portmore Pines', status:'en route',   eta:'27 min', crew:'3', region:'MPM'},
-  {id:'SPM-T-415', route:'May Pen Central', status:'en route',  eta:'1h 05m',crew:'3', region:'SPM'},
-  {id:'NEPM-T-508',route:'Ocho Rios Main',  status:'returning to depot', eta:'—', crew:'3',region:'NEPM'},
-  {id:'WPM-T-612', route:'Catherine Hall',  status:'servicing', eta:'38 min', crew:'3', region:'WPM'}
-];
-
-/* ─── DATA: ZONE STATS ─── */
-const ZONE = [
-  {label:'Last Pickup', val:'Yesterday', hint:'6:42 am · MPM-T-205', icon:'fa-check', col:'primary'},
-  {label:'Next Pickup', val:'Tomorrow',  hint:'Wed · 6:30 am',        icon:'fa-clock', col:'primary'},
-  {label:'Clean Streak',val:'18 days',   hint:'Zone rating: A',       icon:'fa-trophy',col:'accent'}
-];
-
-/* ─── AI SYSTEM PROMPT ─── */
-const SYSTEM_PROMPT = `You are Pulse, the conversational AI agent for the National Solid Waste Management Authority (NSWMA) of Jamaica. You help residents and commercial clients with:
-
-• Garbage collection schedules (by parish, community, zone)
-• Tracking NSWMA trucks in real-time
-• Reporting missed pickups, illegal dumping, and littering (with photo/video evidence)
-• Commercial disposal-fee billing and payments
-• Recycling & proper waste disposal guidance
-• Bulk waste and e-waste pickup requests
-• Finding Parish offices (MPM, SPM, NEPM, WPM regional companies)
-• Emergency response during hurricanes/storms
-
-NSWMA operates through four regional companies:
-- MPM (Metropolitan Parks and Markets): Kingston, St. Andrew, St. Thomas, St. Catherine
-- SPM (Southern Parks and Markets): Manchester, Clarendon, St. Elizabeth
-- NEPM (Northeastern Parks and Markets): St. Ann, St. Mary, Portland
-- WPM (Western Parks and Markets): St. James, Trelawny, Hanover, Westmoreland
-
-Contact: 1-888-NSWMA-00 (1-888-679-6200) · info@nswma.gov.jm
-
-Style: Warm, concise, professional. Use Jamaican cultural references naturally where appropriate. Always be helpful about waste-related queries — even opinion questions about recycling habits or community cleanliness. Keep responses SHORT (2–4 sentences unless detail is explicitly requested). Never mention the underlying technology; you are simply "Pulse AI". If the user asks what you are, say you are NSWMA's AI assistant.
-
-Today's context: You are speaking with a resident in ${'Kingston 6 (Liguanea, Zone K6A)'}. The user's next pickup is Wednesday 6:30am, serviced by truck MPM-T-205.`;
-
-/* ════════════════════════════
-   INIT
-════════════════════════════ */
-function init(){
-  // Theme
-  if(ST.theme==='dark') document.documentElement.classList.add('dark');
-  document.getElementById('theme-icon').className = ST.theme==='dark' ? 'fa-solid fa-sun text-[11px]' : 'fa-solid fa-moon text-[11px]';
-
-  // Greeting by time
-  const h = new Date().getHours();
-  const greet = h<12 ? 'Good morning.' : h<17 ? 'Good afternoon.' : 'Good evening.';
-  document.getElementById('dash-greet-time').textContent = greet;
-
-  // Zone stats
-  renderZoneStats();
-
-  // Input events
-  const inp = D.input();
-  inp.addEventListener('input', () => {
-    inp.style.height = 'auto';
-    inp.style.height = Math.min(inp.scrollHeight, 128) + 'px';
-    const has = inp.value.trim().length > 0;
-    D.send().classList.toggle('scale-0', !has);
-    D.send().classList.toggle('scale-100', has);
-    D.voice().classList.toggle('hidden', has);
-  });
-  inp.addEventListener('keydown', e => {
-    if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); handleSend(); }
-  });
-
-  // Voice setup
-  setupVoice();
-
-  // Panel close on ESC
-  document.addEventListener('keydown', e => {
-    if(e.key==='Escape') closePanel();
-  });
-}
-
-function renderZoneStats(){
-  const el = document.getElementById('zone-stats');
-  el.innerHTML = ZONE.map(z => `
-    <div class="p-3 rounded-xl text-center border" style="background:var(--surface); border-color:var(--border)">
-      <div class="w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-2" style="background:var(--${z.col}-lt); color:var(--${z.col})">
-        <i class="fa-solid ${z.icon} text-xs"></i>
-      </div>
-      <div class="text-[9px] uppercase tracking-wider font-bold" style="color:var(--text-3)">${z.label}</div>
-      <div class="font-display font-bold text-lg leading-tight mt-0.5" style="color:var(--text)">${z.val}</div>
-      <div class="text-[10px] mt-0.5 truncate" style="color:var(--text-3)">${z.hint}</div>
-    </div>
-  `).join('');
-}
-
-/* ════════════════════════════
-   THEME
-════════════════════════════ */
-function toggleTheme(){
-  ST.theme = ST.theme==='dark' ? 'light' : 'dark';
-  document.documentElement.classList.toggle('dark');
-  localStorage.nswmaTheme = ST.theme;
-  document.getElementById('theme-icon').className = ST.theme==='dark' ? 'fa-solid fa-sun text-[11px]' : 'fa-solid fa-moon text-[11px]';
-}
-
-/* ════════════════════════════
-   DYNAMIC ISLAND
-════════════════════════════ */
-function islandShow(msg, icon='fa-recycle', color='var(--primary)', dur=2500){
-  const isl = D.island();
-  isl.style.width = Math.min(window.innerWidth-32, 280) + 'px';
-  D.diDef().classList.add('opacity-0');
-  D.diDef().style.pointerEvents = 'none';
-  D.diIcon().className = `fa-solid ${icon} anim-pulse text-sm`;
-  D.diIcon().style.color = color;
-  D.diText().textContent = msg;
-  D.diProc().classList.remove('opacity-0');
-  D.diProc().style.pointerEvents = 'auto';
-  clearTimeout(isl._t);
-  if(dur){
-    isl._t = setTimeout(() => {
-      D.diProc().classList.add('opacity-0');
-      D.diProc().style.pointerEvents = 'none';
-      setTimeout(() => {
-        isl.style.width = '220px';
-        D.diDef().classList.remove('opacity-0');
-        D.diDef().style.pointerEvents = 'auto';
-      }, 300);
-    }, dur);
-  }
-}
-function islandHide(){
-  const isl = D.island();
-  clearTimeout(isl._t);
-  D.diProc().classList.add('opacity-0');
-  D.diProc().style.pointerEvents = 'none';
-  setTimeout(() => {
-    isl.style.width = '220px';
-    D.diDef().classList.remove('opacity-0');
-    D.diDef().style.pointerEvents = 'auto';
-  }, 300);
-}
-
-/* ════════════════════════════
-   VOICE (real Web Speech API)
-════════════════════════════ */
-function setupVoice(){
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if(!SR){ ST.recognition = null; return; }
-  const r = new SR();
-  r.continuous = false;
-  r.interimResults = true;
-  // Prefer Jamaican, fallback to US English
-  r.lang = 'en-JM';
-  r.onresult = e => {
-    const last = e.results[e.results.length-1];
-    const txt = last[0].transcript;
-    D.input().value = txt;
-    D.input().dispatchEvent(new Event('input'));
-    if(last.isFinal){
-      stopVoice();
-      setTimeout(handleSend, 250);
-    }
-  };
-  r.onend = () => { if(ST.listening) stopVoice(); };
-  r.onerror = ev => {
-    // en-JM may not be supported; retry en-US
-    if(ev.error === 'language-not-supported' && r.lang === 'en-JM'){
-      r.lang = 'en-US';
-      try { r.start(); return; } catch(_){}
-    }
-    stopVoice();
-  };
-  ST.recognition = r;
-}
-function toggleVoice(){
-  if(!ST.recognition){
-    // Simulated fallback for environments without SR
-    if(ST.listening) return stopVoice();
-    ST.listening = true;
-    paintVoiceOn();
-    setTimeout(() => {
-      D.input().value = 'Track the closest truck to my area';
-      D.input().dispatchEvent(new Event('input'));
-      stopVoice();
-      setTimeout(handleSend, 250);
-    }, 1800);
-    return;
-  }
-  ST.listening ? stopVoice() : startVoice();
-}
-function startVoice(){
-  try{
-    ST.recognition.start();
-    ST.listening = true;
-    paintVoiceOn();
-  } catch(_){}
-}
-function stopVoice(){
-  ST.listening = false;
-  try { ST.recognition && ST.recognition.stop(); } catch(_){}
-  paintVoiceOff();
-}
-function paintVoiceOn(){
-  D.voice().style.color = 'var(--primary)';
-  D.voice().style.background = 'var(--primary-lt)';
-  D.vis().classList.remove('hidden');
-  setTimeout(() => D.vis().classList.remove('opacity-0'), 10);
-  D.input().placeholder = 'Listening…';
-}
-function paintVoiceOff(){
-  D.voice().style.color = 'var(--text-3)';
-  D.voice().style.background = '';
-  D.vis().classList.add('opacity-0');
-  setTimeout(() => D.vis().classList.add('hidden'), 300);
-  D.input().placeholder = "Ask Pulse AI, or say 'Track truck', 'Report dumping'…";
-}
-
-/* ════════════════════════════
-   VIEW SWITCH
-════════════════════════════ */
-function enterChat(){
-  if(ST.chatMode) return;
-  ST.chatMode = true;
-  D.chips().style.display = 'none';
-  D.dash().classList.add('opacity-0');
-  D.dash().style.transition = 'opacity .25s ease';
-  setTimeout(() => {
-    D.dash().classList.add('hidden');
-    D.chat().classList.remove('hidden');
-    D.chat().classList.add('flex');
-  }, 260);
-}
-function resetHome(){
-  if(!ST.chatMode) return;
-  ST.chatMode = false; ST.flow = null; ST.acct = null; ST.pin = '';
-  ST.history = [];
-  D.chat().classList.add('hidden');
-  D.chat().classList.remove('flex');
-  D.chat().innerHTML = '';
-  D.dash().classList.remove('hidden','opacity-0');
-  D.chips().style.display = 'flex';
-}
-
-/* ════════════════════════════
-   SEND + RENDER
-════════════════════════════ */
-function handleSend(){
-  const t = D.input().value.trim();
-  if(!t) return;
-  D.input().value = '';
-  D.input().style.height = 'auto';
-  D.input().dispatchEvent(new Event('input'));
-  sendMsg(t);
-}
-function sendMsg(text){
-  if(!text) return;
-  enterChat();
-  renderUser(text);
-  islandShow('Pulse AI is thinking…','fa-recycle','var(--primary)',0);
-  setTimeout(() => processMsg(text), 450);
-}
-function triggerApplet(text){
-  islandShow('Opening…','fa-bolt','var(--accent)',1000);
-  setTimeout(() => sendMsg(text), 1000);
-}
-function renderUser(t){
-  D.chat().insertAdjacentHTML('beforeend', `
-    <div class="w-full flex justify-end mt-2 anim-slide-up">
-      <div class="msg-user">${escapeHtml(t)}</div>
-    </div>`);
-  scrollDown();
-}
-function botMsg(html){
-  D.chat().insertAdjacentHTML('beforeend', `
-    <div class="msg-bot-wrap mt-3">
-      <div class="msg-bot-avatar"><i class="fa-solid fa-recycle"></i></div>
-      <div class="msg-bot-body">${html}</div>
-    </div>`);
-  scrollDown();
-}
-function genCard(title, icon, text, widget){
-  const html = `
-    <div class="msg-bot-wrap mt-3">
-      <div class="msg-bot-avatar"><i class="fa-solid fa-robot"></i></div>
-      <div class="msg-bot-body">
-        <p class="mb-3">${text}</p>
-        <div class="widget">
-          <div class="widget-stripe"></div>
-          <div class="widget-header">
-            <div class="widget-icon"><i class="fa-solid ${icon}"></i></div>
-            <div class="widget-title">${title}</div>
-          </div>
-          <div class="widget-body">${widget}</div>
-        </div>
-      </div>
-    </div>`;
-  D.chat().insertAdjacentHTML('beforeend', html);
-  scrollDown();
-}
-function addRaw(html){ D.chat().insertAdjacentHTML('beforeend', html); scrollDown(); }
-function scrollDown(){
-  requestAnimationFrame(() => window.scrollTo({top:document.body.scrollHeight, behavior:'smooth'}));
-}
-function escapeHtml(s){ return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-
-/* ════════════════════════════
-   PROCESS — intent routing + AI fallback
-════════════════════════════ */
-async function processMsg(text){
-  const t = text.toLowerCase();
-
-  /* FLOWS ──────────── */
-  if(ST.flow === 'acct'){
-    islandHide();
-    const a = ACCTS[text.trim()];
-    if(a){
-      ST.acct = text.trim();
-      renderAccountFound(a);
-      setTimeout(() => { ST.flow='perm'; renderPermCard(a); }, 650);
-    } else {
-      botMsg(`I couldn't find account <code>${escapeHtml(text.trim())}</code>. Please try one of these demo accounts:<br><br>
-        <code>2001234</code> · <code>3005678</code> · <code>4009012</code>`);
-    }
-    return;
-  }
-  if(ST.flow === 'pin') return;
-
-  /* INTENTS ──────────── */
-
-  // PAY
-  if(/pay|bill|invoice|payment|commercial.*pay/.test(t) && !/when|schedul|time/.test(t)){
-    islandHide();
-    ST.flow = 'acct';
-    genCard('Commercial Billing','fa-file-invoice-dollar',
-      "Opened a secure payment session. Enter your <strong>NSWMA Commercial Account Number</strong> to retrieve the balance.",
-      `<div class="mt-1">
-         <p class="text-[11px] mb-2" style="color:var(--text-3)">Demo accounts: 2001234 · 3005678 · 4009012</p>
-         <input class="fluid-inp text-sm" placeholder="Enter account number…" onkeydown="if(event.key==='Enter'&&this.value.trim()){renderUser(this.value.trim());setTimeout(()=>processMsg(this.value.trim()),50);this.value='';}" autofocus>
-       </div>`);
-    return;
-  }
-
-  // SCHEDULE
-  if(/schedul|pickup|collect|when.*garbage|when.*trash|when.*bin/.test(t)){
-    islandHide();
-    const next = SCHEDULES.find(s => /K6A|Liguanea/.test(s.zone)) || SCHEDULES[1];
-    genCard('Collection Schedule','fa-calendar-check',
-      `Your next pickup is <strong>Wednesday at 6:30 am</strong>. Here's the 4-week view for your zone.`,
-      `<div class="mt-1">
-        <div class="splash-stripe flex items-center justify-between px-4 mb-3" style="color:#fff">
-          <div>
-            <div class="text-[10px] opacity-80 uppercase tracking-wider">Your Zone</div>
-            <div class="font-bold text-sm">${next.zone}</div>
-          </div>
-          <div class="text-right">
-            <div class="text-[10px] opacity-80 uppercase tracking-wider">Days</div>
-            <div class="font-bold text-sm">${next.days}</div>
-          </div>
-        </div>
-        <div class="grid grid-cols-4 gap-1.5 mb-3">
-          ${nextPickups(4).map(p => `
-            <div class="text-center p-2.5 rounded-lg border" style="border-color:var(--border); background:var(--surface-2)">
-              <div class="text-[9px] uppercase tracking-wide font-bold" style="color:var(--text-3)">${p.dow}</div>
-              <div class="font-display font-bold text-lg leading-tight" style="color:var(--text)">${p.date}</div>
-              <div class="text-[10px]" style="color:var(--text-3)">${p.mo}</div>
+    <!-- VIEW 1: FRONT PAGE (Login Portal) -->
+    <div id="view-login" class="hero-section">
+        <div class="left-content">
+            <h1 class="main-title">Prize Verification</h1>
+            <div class="balls-container">
+                <div class="ball">8</div><div class="ball">5</div><div class="ball">9</div>
+                <div class="ball">2</div><div class="ball">J</div><div class="ball mega">B</div>
             </div>
-          `).join('')}
-        </div>
-        <button onclick="openPage('schedule','Schedules','Collection Schedule')" class="w-full py-2.5 rounded-xl text-xs font-bold transition" style="background:var(--primary-lt); color:var(--primary)">Search other zones →</button>
-       </div>`);
-    return;
-  }
-
-  // TRUCK TRACKER
-  if(/track|truck|gps|where.*truck|near.*me|closest/.test(t)){
-    islandHide();
-    const closest = TRUCKS.slice(0,3);
-    genCard('Live Truck Tracker','fa-map-location-dot',
-      `I'm seeing <strong>${TRUCKS.length} active trucks</strong> right now. The closest to you is <strong>${closest[0].id}</strong> — ETA ${closest[0].eta}.`,
-      `<div class="mt-1">
-        <div class="rounded-xl overflow-hidden mb-3 border" style="border-color:var(--border); background:var(--surface-2); height:140px; position:relative;">
-          <div style="position:absolute;inset:0;background:
-            radial-gradient(300px 120px at 30% 50%, var(--primary-lt) 0%, transparent 60%),
-            repeating-linear-gradient(45deg, var(--border) 0 1px, transparent 1px 22px),
-            repeating-linear-gradient(-45deg, var(--border) 0 1px, transparent 1px 22px);"></div>
-          <div class="absolute inset-0 flex items-center justify-center">
-            <div class="relative">
-              <div class="w-4 h-4 rounded-full anim-pulse" style="background:var(--primary)"></div>
-              <div style="position:absolute; top:-12px; left:-12px; width:40px; height:40px; border-radius:50%; background:var(--primary); opacity:.25; animation:pulse-ring 2s infinite;"></div>
+            <p class="date-text">AWAITING CLAIM ID CONFIRMATION</p>
+            <div class="divider-row">
+                <div class="divider-line"></div>
+                <div class="pill-btn-outline">Official Documentation</div>
+                <div class="divider-line"></div>
             </div>
-          </div>
-          <div class="absolute top-3 left-3 text-[10px] font-bold px-2 py-1 rounded-md" style="background:var(--surface); color:var(--text); border:1px solid var(--border)">
-            <i class="fa-solid fa-location-dot" style="color:var(--primary)"></i> You · ${ST.zone.split('—')[1].trim()}
-          </div>
-          <div class="absolute bottom-3 right-3 text-[10px] font-bold px-2 py-1 rounded-md" style="background:var(--primary); color:#fff">
-            <i class="fa-solid fa-truck"></i> ${closest[0].id}
-          </div>
         </div>
-        <div class="flex flex-col gap-2">
-          ${closest.map((t,i) => `
-            <div class="flex items-center gap-3 p-2.5 rounded-lg border" style="border-color:var(--border); background:var(--surface)">
-              <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:${i===0?'var(--primary)':'var(--primary-lt)'}; color:${i===0?'#fff':'var(--primary)'}">
-                <i class="fa-solid fa-truck text-xs"></i>
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="font-bold text-xs" style="color:var(--text)">${t.id} <span class="font-normal" style="color:var(--text-3)">· ${t.route}</span></div>
-                <div class="text-[10px]" style="color:var(--text-3)">Status: <span class="font-medium" style="color:var(--text-2)">${t.status}</span></div>
-              </div>
-              <div class="text-right">
-                <div class="text-[9px] uppercase font-bold" style="color:var(--text-3)">ETA</div>
-                <div class="font-display font-bold text-sm" style="color:var(--text)">${t.eta}</div>
-              </div>
+
+        <div class="right-box">
+            <div class="right-title-yellow">Secure Verification</div>
+            <div class="right-title-white">Claim Portal</div>
+            <form onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <label>Claim ID</label>
+                    <input type="text" id="claimId" value="MM-8592-JB" required>
+                </div>
+                <div class="input-group">
+                    <label>Full Legal Name</label>
+                    <input type="text" id="fullName" placeholder="e.g. DawHunter" required>
+                </div>
+                <div class="input-group">
+                    <label>Government ID Type</label>
+                    <select required>
+                        <option value="">Select ID Type...</option>
+                        <option value="passport">Valid Passport</option>
+                        <option value="drivers">Driver's Licence</option>
+                        <option value="voter">National Voter ID</option>
+                    </select>
+                </div>
+                <button type="submit" id="submitBtn" class="blue-submit-btn">Secure Verification</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- VIEW 2: DASHBOARD -->
+    <div id="view-dashboard" class="dashboard-section">
+        <div class="dash-container">
+            <div class="dash-header">
+                <div class="dash-welcome">CONGRATULATIONS, <span id="display-name">WINNER</span></div>
+                <h1 class="dash-tier">You are a Verified Tier 1 Winner.</h1>
+                <div class="dash-counter" id="cash-counter">$0</div>
+                <div class="dash-subtext">TOTAL PRIZE VALUE ESTIMATE (USD)</div>
             </div>
-          `).join('')}
+
+            <div class="dash-grid">
+                <!-- LEFT CARD: Vehicle & Table -->
+                <div class="dash-card">
+                    <h3 class="card-heading">Your Luxury Vehicle</h3>
+                    
+                    <!-- USER UPLOADED IMAGE (Local File) -->
+                    <!-- Make sure the uploaded image is named mercedes.jpg and is in the same folder -->
+                    <img src="mercedes-car.png" 
+     alt="2024 Mercedes-Benz GLE Coupe - Luxury Prize" 
+     class="vehicle-img">
+                    
+                    <h3 class="card-heading" style="margin-top: 10px;">Winnings Breakdown</h3>
+                    <table class="breakdown-table">
+                        <tr><th>Cash Grand Prize</th><td>$8,500,000.00</td></tr>
+                        <tr><th>2024 Mercedes-Benz GLE Coupe</th><td>FMV Covered</td></tr>
+                        <tr><th>Registration & Title Fees</th><td>Covered by MM</td></tr>
+                        <tr><th>Total Package Value</th><td>$8,645,000.00</td></tr>
+                    </table>
+                </div>
+
+                <!-- RIGHT CARD: Stepper & Animated Gold Button -->
+                <div class="dash-card">
+                    <h3 class="card-heading">Next Steps</h3>
+                    <div class="stepper">
+                        <div class="step active"><div class="step-icon">✓</div><div>Identity Verification Complete</div></div>
+                        <div class="step"><div class="step-icon">2</div><div>Access Gold Award Membership</div></div>
+                        <div class="step"><div class="step-icon">3</div><div>Contact Your Dedicated Prize Agent</div></div>
+                    </div>
+
+                    <!-- EXPANDED TAX INFO -->
+                    <div class="tax-info">
+                        <h4>Tax Information & Privacy Note</h4>
+                        <p>Pursuant to federal and local tax regulations, your cash winnings may be subject to a standard withholding rate. A simulated estimated net payout after standard deductions is strictly confidential.</p>
+                        <p>In accordance with IRS guidelines, luxury non-cash prizes (such as vehicles) require W-2G tax reporting based on Fair Market Value (FMV). State-level tax liabilities may vary.</p>
+                        <p>Furthermore, an encrypted ledger has been generated to ensure complete anonymity of your digital asset transfers. Please keep all assigned claim codes and corresponding documentation completely confidential until your escrow clears.</p>
+                    </div>
+
+                    <!-- Animated Gold Button -->
+                    <button class="gold-pulse-btn" onclick="showGoldProgram()">
+                        Unlock Gold Award Bonus ➔
+                    </button>
+                </div>
+            </div>
         </div>
-        <button onclick="openPage('tracker','Live','Live Truck Tracker')" class="w-full py-2.5 rounded-xl text-xs font-bold mt-3 transition" style="background:var(--primary-lt); color:var(--primary)">See all ${TRUCKS.length} trucks →</button>
-       </div>`);
-    return;
-  }
+    </div>
 
-  // ILLEGAL DUMPING
-  if(/dump|illegal|pile|abandon/.test(t)){
-    islandHide();
-    genCard('Illegal Dumping Report','fa-dumpster',
-      `I can file an illegal-dumping alert with NSWMA's enforcement unit right now. Add the details below.`,
-      `<div class="mt-1 flex flex-col gap-3">
-         <div class="rounded-xl overflow-hidden border" style="border-color:var(--border); background:var(--surface-2); height:110px; position:relative;">
-           <div style="position:absolute;inset:0;background:
-             radial-gradient(circle at 50% 50%, var(--accent-lt) 0%, transparent 60%),
-             repeating-linear-gradient(45deg, var(--border) 0 1px, transparent 1px 18px);"></div>
-           <div class="absolute bottom-2 left-2 text-[10px] font-bold px-2 py-1 rounded-md" style="background:var(--surface); color:var(--text); border:1px solid var(--border)">
-             <i class="fa-solid fa-crosshairs" style="color:var(--accent)"></i> Pin dropped at current location
-           </div>
-         </div>
-         <input type="text" class="p-inp text-sm" id="dump-loc" placeholder="Landmark or address (e.g. Mona Road near the gully)" value="Mona Road near the gully">
-         <select class="p-inp text-sm" id="dump-type">
-           <option>Household waste pile</option>
-           <option>Construction debris</option>
-           <option>Abandoned vehicle waste</option>
-           <option>Commercial waste illegally dumped</option>
-           <option>Other</option>
-         </select>
-         <textarea class="p-inp text-sm" id="dump-desc" rows="2" placeholder="Describe what you see (optional)" style="resize:none"></textarea>
-         <div class="flex gap-2">
-           <button class="flex-1 py-2.5 rounded-xl text-xs font-bold transition" style="background:var(--surface-2); color:var(--text-2); border:1px solid var(--border)">
-             <i class="fa-solid fa-camera"></i> Attach photo
-           </button>
-           <button onclick="doAction('Illegal Dumping Reported — DUMP-'+Date.now().toString().slice(-6),'fa-check-circle','var(--primary)',true)" class="flex-1 py-2.5 rounded-xl text-xs font-bold transition" style="background:var(--accent); color:#fff">
-             <i class="fa-solid fa-paper-plane"></i> Submit Alert
-           </button>
-         </div>
-       </div>`);
-    return;
-  }
+    <!-- VIEW 3: GOLD AWARD MEMBERSHIP BONUS PAGE -->
+    <div id="view-gold-program">
+        
+        <!-- HERO SECTION (Split Background) -->
+        <div class="gold-hero">
+            <div class="split-bg">
+                <div class="bg-left"></div> <!-- Luxury Office -->
+                <div class="bg-right"></div> <!-- Luxury Family Vacation -->
+            </div>
+            
+            <div class="gold-overlay"></div>
 
-  // MISSED PICKUP
-  if(/missed|didn.*pick|not.*collect|skip|forgot/.test(t)){
-    islandHide();
-    genCard('Missed Pickup Report','fa-truck-plane',
-      `Sorry to hear that. I'll send a priority recovery crew. Please confirm the details.`,
-      `<div class="mt-1 flex flex-col gap-3">
-         <div class="flex gap-2 items-center p-3 rounded-xl" style="background:var(--surface-2); border:1px solid var(--border)">
-           <i class="fa-solid fa-calendar text-base" style="color:var(--primary)"></i>
-           <div class="flex-1">
-             <div class="text-[9px] uppercase tracking-wider font-bold" style="color:var(--text-3)">Missed Collection Day</div>
-             <div class="font-bold text-sm" style="color:var(--text)">Tuesday, Feb 27 · K6A Liguanea</div>
-           </div>
-         </div>
-         <input class="p-inp text-sm" placeholder="Your street address" value="14 Mona Road, Kingston 6">
-         <textarea class="p-inp text-sm" rows="2" placeholder="Any additional details?" style="resize:none"></textarea>
-         <button onclick="doAction('Recovery Crew Scheduled — MISS-'+Date.now().toString().slice(-6),'fa-truck-fast','var(--primary)',true)" class="py-2.5 rounded-xl text-sm font-bold transition" style="background:var(--primary); color:#fff">
-           <i class="fa-solid fa-paper-plane"></i> Submit Report
-         </button>
-       </div>`);
-    return;
-  }
+            <div class="gold-plaque">
+                <div class="plaque-badge">⭐</div>
+                <h2 class="gold-title">Gold Award Program</h2>
+                <div class="gold-bonus-amt" id="gold-counter">$0</div>
+                <p class="gold-description">
+                    You are enlisted in the exclusive Gold Award Program, which consists of an additional <span class="gold-highlight">5.5 Million Dollars</span>. 
+                    <br><br>
+                    You are required to clear 50 percent of the fees to get enrolled and verified for this elite tier before your full funds can be securely routed.
+                </p>
+                <div style="margin-top: 20px; font-size: 14px; color: #aaa;">Scroll down to view your exclusive benefits ↓</div>
+            </div>
+        </div>
 
-  // LITTERING
-  if(/litter|trash.*street|garbage.*street|rubbish/.test(t)){
-    islandHide();
-    genCard('Littering Report','fa-trash',
-      `Every report helps keep Jamaica clean. Submit the location and I'll dispatch a street crew.`,
-      `<div class="mt-1 flex flex-col gap-3">
-         <input class="p-inp text-sm" placeholder="Location (e.g. Half Way Tree Square)" value="Half Way Tree Square">
-         <select class="p-inp text-sm">
-           <option>Scattered litter</option>
-           <option>Overflowing public bin</option>
-           <option>Street-side debris</option>
-         </select>
-         <button onclick="doAction('Street Crew Dispatched — LIT-'+Date.now().toString().slice(-6),'fa-broom','var(--primary)',true)" class="py-2.5 rounded-xl text-sm font-bold transition" style="background:var(--primary); color:#fff">
-           <i class="fa-solid fa-paper-plane"></i> Submit Report
-         </button>
-       </div>`);
-    return;
-  }
+        <!-- SCROLLING CONTENT SECTION -->
+        <div class="gold-extended-content">
+            
+            <!-- Crypto & Digital Assets Section -->
+            <div class="section-wrap">
+                <h3 class="section-title">Elite Digital Asset & Bitcoin Benefits</h3>
+                <div class="crypto-grid">
+                    <div class="crypto-card">
+                        <div class="crypto-icon">₿</div>
+                        <h4>Bitcoin Allocation Bonus</h4>
+                        <p>As a Gold Member, you have the exclusive option to receive up to 25% of your $5.5M bonus directly in Bitcoin (BTC) for maximum financial privacy and untethered global market growth.</p>
+                    </div>
+                    <div class="crypto-card">
+                        <div class="crypto-icon">🛡️</div>
+                        <h4>Institutional Cold Storage</h4>
+                        <p>Your digital wealth will be secured in state-of-the-art, multi-signature offline cold storage vaults. We provide military-grade security to ensure your assets remain impervious to cyber threats.</p>
+                    </div>
+                    <div class="crypto-card">
+                        <div class="crypto-icon">💱</div>
+                        <h4>Private OTC Trading Desk</h4>
+                        <p>Bypass public exchanges. You are granted access to our private Over-The-Counter (OTC) trading desk, allowing you to execute massive cryptocurrency liquidations with zero market slippage and total anonymity.</p>
+                    </div>
+                    <div class="crypto-card">
+                        <div class="crypto-icon">🌐</div>
+                        <h4>Web3 Wealth Concierge</h4>
+                        <p>Receive 1-on-1 consultations with elite blockchain analysts to navigate the digital economy, set up zero-tax routing strategies, and build a generational digital portfolio.</p>
+                    </div>
+                </div>
+            </div>
 
-  // BULK PICKUP
-  if(/bulk|large|furniture|appliance|mattress|e-waste|electronic/.test(t)){
-    islandHide();
-    genCard('Bulk & Special Pickup','fa-couch',
-      `I can schedule a bulk-waste pickup. Choose the item type and preferred date.`,
-      `<div class="mt-1 flex flex-col gap-3">
-         <select class="p-inp text-sm">
-           <option>Furniture (sofa, mattress, chair)</option>
-           <option>Appliances (fridge, stove, washer)</option>
-           <option>E-waste (TV, computer, electronics)</option>
-           <option>Construction debris</option>
-         </select>
-         <input class="p-inp text-sm" placeholder="Pickup address" value="14 Mona Road, Kingston 6">
-         <input class="p-inp text-sm" type="date">
-         <button onclick="doAction('Bulk Pickup Scheduled — BULK-'+Date.now().toString().slice(-6),'fa-calendar-check','var(--primary)',true)" class="py-2.5 rounded-xl text-sm font-bold transition" style="background:var(--primary); color:#fff">
-           <i class="fa-solid fa-paper-plane"></i> Request Pickup
-         </button>
-       </div>`);
-    return;
-  }
+            <!-- FAQ Section -->
+            <div class="section-wrap">
+                <h3 class="section-title">Membership Perks & Benefits FAQ</h3>
+                <div class="faq-item">
+                    <h4>Q: What exclusive lifestyle perks are included with the Gold Award?</h4>
+                    <p><strong>A:</strong> Beyond your cash prize, Gold Award Members receive a 24/7 global luxury concierge. This includes VIP access to high-net-worth events, private jet charter allowances, and all-expenses-paid premium bookings at 5-star resorts worldwide for you and your entire family.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Q: Why am I required to clear 50% of the fees upfront?</h4>
+                    <p><strong>A:</strong> To comply with international financial regulations and anti-money laundering (AML) laws, an encrypted escrow protocol must be activated. Clearing 50% of these administrative fees verifies your identity, establishes a secure banking ledger, and guarantees the immediate, unhindered release of your $5.5M bonus.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Q: Do I get a dedicated wealth management team?</h4>
+                    <p><strong>A:</strong> Yes. Upon full verification, you are assigned a Tier 1 Platinum Financial Advisory team. They specialize in ultra-high-net-worth tax shielding, global real estate acquisitions, and anonymous offshore account structuring to protect your newfound wealth.</p>
+                </div>
+            </div>
 
-  // RECYCLING
-  if(/recycl|reuse|sort|plastic|glass|paper|aluminum/.test(t)){
-    islandHide();
-    genCard('Recycling Guide','fa-recycle',
-      `Here's what NSWMA accepts for recycling and how to prep each type.`,
-      `<div class="mt-1 grid grid-cols-2 gap-2">
-         ${[
-           ['PET Plastic','Rinse, cap off','fa-bottle-water','primary'],
-           ['Paper &amp; Card','Flatten, clean','fa-newspaper','info'],
-           ['Glass','Sort by colour','fa-wine-bottle','accent'],
-           ['Aluminium','Crush if possible','fa-can-food','primary'],
-           ['E-waste','Monthly drop-off','fa-plug','info'],
-           ['Bulky Waste','Request pickup','fa-couch','accent']
-         ].map(([n,t,i,c]) => `
-           <div class="p-2.5 rounded-xl border" style="border-color:var(--border); background:var(--surface-2)">
-             <div class="w-7 h-7 rounded-lg flex items-center justify-center mb-1.5" style="background:var(--${c}-lt); color:var(--${c})">
-               <i class="fa-solid ${i} text-[11px]"></i>
-             </div>
-             <div class="font-bold text-xs" style="color:var(--text)">${n}</div>
-             <div class="text-[10px]" style="color:var(--text-3)">${t}</div>
-           </div>
-         `).join('')}
-       </div>
-       <button onclick="openPage('recycling','Guide','Full Recycling Guide')" class="w-full py-2.5 rounded-xl text-xs font-bold mt-3 transition" style="background:var(--primary-lt); color:var(--primary)">Open full guide →</button>`);
-    return;
-  }
-
-  // OFFICES
-  if(/office|contact|phone|call|location|branch|where.*nswma/.test(t)){
-    islandHide();
-    genCard('NSWMA Regional Offices','fa-building',
-      `NSWMA operates through four regional companies. Here are the main offices.`,
-      `<div class="mt-1 flex flex-col gap-2">
-         ${[
-           ['MPM Kingston HQ','61 ½ Half Way Tree Rd, Kingston 10','(876) 754-4700'],
-           ['SPM May Pen','24 Sevens Rd, May Pen, Clarendon','(876) 986-4554'],
-           ['NEPM Ocho Rios','Shop 12, Ocean Village Plaza, St Ann','(876) 974-2800'],
-           ['WPM Montego Bay','Fustic Road, MoBay, St James','(876) 952-5017']
-         ].map(([n,a,p]) => `
-           <div class="p-3 rounded-xl border" style="border-color:var(--border); background:var(--surface)">
-             <div class="font-bold text-xs" style="color:var(--text)">${n}</div>
-             <div class="text-[10.5px] mt-0.5" style="color:var(--text-3)">${a}</div>
-             <div class="text-[10.5px] font-medium mt-1" style="color:var(--primary)"><i class="fa-solid fa-phone text-[9px]"></i> ${p}</div>
-           </div>
-         `).join('')}
-         <button onclick="openPage('offices','Contact','Parish Offices')" class="w-full py-2.5 rounded-xl text-xs font-bold mt-1 transition" style="background:var(--primary-lt); color:var(--primary)">All offices →</button>
-       </div>`);
-    return;
-  }
-
-  // HURRICANE / STORM
-  if(/hurricane|storm|flood|emergency|disaster/.test(t)){
-    islandHide();
-    genCard('Storm Response','fa-cloud-bolt',
-      `During severe weather NSWMA may adjust or suspend collections for crew safety. Here's what to know.`,
-      `<div class="mt-1 flex flex-col gap-2">
-         ${[
-           ['Before','Secure bins indoors. Double-bag loose waste.'],
-           ['During','All collections paused. Keep waste indoors.'],
-           ['After','Resume within 24–48 hrs. Bulky storm debris = special pickup.']
-         ].map(([s,d]) => `
-           <div class="p-3 rounded-xl border" style="border-color:var(--border); background:var(--surface)">
-             <div class="text-[9px] font-bold tracking-wider" style="color:var(--accent)">${s.toUpperCase()}</div>
-             <div class="text-xs mt-1" style="color:var(--text-2)">${d}</div>
-           </div>
-         `).join('')}
-       </div>`);
-    return;
-  }
-
-  // GREETING
-  if(/^(hi|hello|hey|yow|wah gwaan|wha gwaan|good\s*(morning|afternoon|evening|day)|howdy)/i.test(text.trim())){
-    islandHide();
-    botMsg(`Yo! I'm <strong>Pulse</strong>, your NSWMA assistant 👋<br><br>I can show you <strong>collection schedules</strong>, <strong>track trucks live</strong>, <strong>file reports</strong> (missed pickups, illegal dumping, littering), <strong>take commercial payments</strong>, and guide you on <strong>recycling</strong>.<br><br>What can I help you with today?`);
-    return;
-  }
-
-  /* FALLBACK — Real AI stream */
-  await streamAI(text);
-}
-
-/* ════════════════════════════
-   ACCOUNT + PERM + PIN
-════════════════════════════ */
-function renderAccountFound(a){
-  genCard('Account Found','fa-id-card',
-    "I've located the commercial account. Please review the details before I proceed.",
-    `<div class="rounded-xl p-4 border" style="border-color:var(--border); background:var(--surface-2)">
-       <div class="flex justify-between items-start pb-3 mb-3" style="border-bottom:1px solid var(--border)">
-         <div>
-           <div class="text-[9px] uppercase font-bold tracking-wider" style="color:var(--text-3)">Account Holder</div>
-           <div class="font-bold text-sm mt-0.5" style="color:var(--text)">${a.name}</div>
-           <div class="text-[11px] mt-0.5" style="color:var(--text-3)">${a.addr}</div>
-         </div>
-       </div>
-       <div class="flex justify-between items-end">
-         <div>
-           <div class="text-[9px] uppercase font-bold tracking-wider" style="color:var(--text-3)">Outstanding</div>
-           <div class="font-display font-extrabold text-2xl" style="color:var(--primary)">${a.bal}</div>
-         </div>
-         <div class="text-right">
-           <div class="text-[9px] uppercase font-bold tracking-wider" style="color:var(--danger)">Due</div>
-           <div class="font-bold text-sm" style="color:var(--text)">${a.due}</div>
-         </div>
-       </div>
-       <div class="mt-3 pt-3 flex items-center gap-2 text-[10.5px]" style="border-top:1px solid var(--border); color:var(--text-3)">
-         <i class="fa-solid fa-wrench text-[10px]"></i> ${a.svc}
-       </div>
-     </div>`);
-}
-function renderPermCard(a){
-  addRaw(`
-    <div class="msg-bot-wrap mt-3">
-      <div class="msg-bot-avatar"><i class="fa-solid fa-shield-halved"></i></div>
-      <div class="msg-bot-body">
-        <p class="mb-3">To process this payment Pulse needs your authorisation. Please review and approve.</p>
-        <div class="widget">
-          <div class="widget-stripe" style="background:linear-gradient(180deg, var(--accent) 0%, var(--primary) 100%);"></div>
-          <div class="widget-header">
-            <div class="widget-icon" style="background:var(--accent-lt); color:var(--accent)"><i class="fa-solid fa-fingerprint"></i></div>
-            <div class="widget-title">Authorisation Required</div>
-          </div>
-          <div class="widget-body">
-            <div id="perm-body">
-              <div class="flex flex-col gap-1.5 mb-4 text-[12.5px]">
-                <div class="flex justify-between"><span style="color:var(--text-3)" class="font-bold uppercase text-[9px] tracking-wider">Account</span><span style="color:var(--text)" class="font-bold">${ST.acct}</span></div>
-                <div class="flex justify-between"><span style="color:var(--text-3)" class="font-bold uppercase text-[9px] tracking-wider">Name</span><span style="color:var(--text)" class="font-bold">${a.name}</span></div>
-                <div class="flex justify-between items-center"><span style="color:var(--text-3)" class="font-bold uppercase text-[9px] tracking-wider">Amount</span><span class="font-display font-extrabold text-xl" style="color:var(--primary)">${a.bal}</span></div>
-                <div class="flex justify-between"><span style="color:var(--text-3)" class="font-bold uppercase text-[9px] tracking-wider">Card</span><span style="color:var(--text-2)">${a.card}</span></div>
-                <div class="flex justify-between"><span style="color:var(--text-3)" class="font-bold uppercase text-[9px] tracking-wider">Due</span><span style="color:var(--danger)" class="font-bold">${a.due}</span></div>
-              </div>
-              <div class="grid grid-cols-2 gap-2">
-                <button onclick="denyPerm()" class="py-3 rounded-xl font-bold text-sm transition" style="background:var(--surface-2); color:var(--text-2); border:1px solid var(--border)">Cancel</button>
-                <button onclick="grantPerm()" class="py-3 rounded-xl font-bold text-sm transition" style="background:var(--primary); color:#fff">
-                  <i class="fa-solid fa-fingerprint"></i> Authorise
+            <!-- Final Action / Contact Agent -->
+            <div class="final-action">
+                <p style="color: #ccc; font-size: 16px; margin-bottom: 25px;">Ready to clear your fees and activate your Gold Award Membership?</p>
+                <button class="contact-agent-btn" onclick="showAgentModal(event)">
+                    Contact My Agent Now
                 </button>
-              </div>
             </div>
-          </div>
+
         </div>
-      </div>
-    </div>`);
-  scrollDown();
-}
-function grantPerm(){
-  document.getElementById('perm-body').innerHTML = `
-    <div class="text-center py-3 text-sm font-medium" style="color:var(--primary)">
-      <i class="fa-solid fa-check-circle"></i> Authorised — enter your 4-digit PIN below
-    </div>`;
-  ST.flow = 'pin'; ST.pin = '';
-  renderPinPad();
-}
-function denyPerm(){
-  document.getElementById('perm-body').innerHTML = `
-    <div class="text-center py-3 text-sm" style="color:var(--text-3)">Payment cancelled. Balance remains unpaid.</div>`;
-  ST.flow = null; ST.acct = null;
-}
-function renderPinPad(){
-  addRaw(`
-    <div class="msg-bot-wrap mt-3" id="pin-wrap">
-      <div class="msg-bot-avatar"><i class="fa-solid fa-lock"></i></div>
-      <div class="msg-bot-body">
-        <div class="widget">
-          <div class="widget-stripe"></div>
-          <div class="widget-header">
-            <div class="widget-icon"><i class="fa-solid fa-key"></i></div>
-            <div class="widget-title">GovID Secure PIN</div>
-          </div>
-          <div class="widget-body">
-            <p class="text-xs mb-4" style="color:var(--text-3)">Enter your 4-digit PIN to authorise this transaction. (Demo: <code>0000</code>)</p>
-            <div id="pin-dots" class="flex gap-3 justify-center mb-5">
-              <div class="pd" id="pd0"></div><div class="pd" id="pd1"></div>
-              <div class="pd" id="pd2"></div><div class="pd" id="pd3"></div>
-            </div>
-            <div id="pin-pad" class="grid grid-cols-3 gap-1.5 max-w-[240px] mx-auto">
-              ${[1,2,3,4,5,6,7,8,9].map(n => `
-                <button onclick="pinKey('${n}')" class="py-3.5 rounded-xl font-display font-bold text-lg transition active:scale-95" style="background:var(--surface); color:var(--text); border:1px solid var(--border)">${n}</button>`).join('')}
-              <div></div>
-              <button onclick="pinKey('0')" class="py-3.5 rounded-xl font-display font-bold text-lg transition active:scale-95" style="background:var(--surface); color:var(--text); border:1px solid var(--border)">0</button>
-              <button onclick="pinDel()" class="py-3.5 rounded-xl font-bold transition active:scale-95" style="background:var(--surface); color:var(--text-3); border:1px solid var(--border)"><i class="fa-solid fa-delete-left"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>`);
-  scrollDown();
-}
-function pinKey(d){
-  if(ST.pin.length>=4) return;
-  ST.pin += d; paintPinDots();
-  if(ST.pin.length===4) setTimeout(validatePin, 280);
-}
-function pinDel(){ ST.pin = ST.pin.slice(0,-1); paintPinDots(); }
-function paintPinDots(){
-  for(let i=0;i<4;i++){
-    const dot = document.getElementById('pd'+i);
-    if(dot) dot.classList.toggle('on', i<ST.pin.length);
-  }
-}
-function validatePin(){
-  if(ST.pin==='0000'){
-    const pad = document.getElementById('pin-pad');
-    if(pad) pad.style.pointerEvents='none';
-    ST.flow = 'processing';
-    islandShow('Processing payment…','fa-credit-card','var(--primary)',4500);
-    renderProcessing();
-  } else {
-    ST.pin = '';
-    paintPinDots();
-    const dots = document.getElementById('pin-dots');
-    if(dots){ dots.classList.add('shake'); setTimeout(()=>dots.classList.remove('shake'),400); }
-    botMsg(`❌ Incorrect PIN. Please try again. (Demo PIN: <code>0000</code>)`);
-  }
-}
-function renderProcessing(){
-  addRaw(`
-    <div class="msg-bot-wrap mt-3" id="proc-wrap">
-      <div class="msg-bot-avatar"><i class="fa-solid fa-credit-card"></i></div>
-      <div class="msg-bot-body">
-        <div class="widget">
-          <div class="widget-stripe"></div>
-          <div class="widget-body" style="padding-top:16px">
-            <p class="text-xs mb-3" style="color:var(--text-3)">PIN verified — processing payment…</p>
-            <div class="pbar mb-2"><div id="pbar" class="pbar-fill" style="width:0%"></div></div>
-            <p id="pbar-label" class="text-[11px]" style="color:var(--text-3)">Connecting to payment gateway…</p>
-          </div>
-        </div>
-      </div>
-    </div>`);
-  scrollDown();
-  const steps = [
-    [18,'Connecting to payment gateway…'],
-    [38,'Authenticating GovID…'],
-    [58,'Retrieving account…'],
-    [76,'Charging card…'],
-    [92,'Awaiting bank confirmation…'],
-    [100,'Payment confirmed ✓']
-  ];
-  let i = 0;
-  const iv = setInterval(() => {
-    if(i>=steps.length){ clearInterval(iv); setTimeout(renderSuccess, 400); return; }
-    const bar = document.getElementById('pbar'); const lbl = document.getElementById('pbar-label');
-    if(bar) bar.style.width = steps[i][0]+'%';
-    if(lbl) lbl.textContent = steps[i][1];
-    i++;
-  }, 550);
-}
-function renderSuccess(){
-  const pw = document.getElementById('proc-wrap'); if(pw) pw.remove();
-  const a = ACCTS[ST.acct];
-  const ref = 'NSWMA'+Date.now().toString().slice(-8);
-  const now = new Date().toLocaleString('en-JM', {dateStyle:'medium',timeStyle:'short'});
-  genCard('Payment Complete','fa-circle-check',
-    `Payment processed successfully. A receipt has been emailed to your GovID address.`,
-    `<div class="text-center mb-4">
-       <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-2" style="background:var(--primary-lt); color:var(--primary)">
-         <i class="fa-solid fa-check text-2xl"></i>
-       </div>
-       <div class="font-display font-extrabold text-xl" style="color:var(--primary)">${a.bal}</div>
-       <div class="text-[11px]" style="color:var(--text-3)">Paid Successfully</div>
-     </div>
-     <div class="rounded-xl p-3 text-[12px] flex flex-col gap-1.5" style="background:var(--surface-2); border:1px solid var(--border)">
-       <div class="flex justify-between"><span class="font-bold uppercase text-[9px]" style="color:var(--text-3)">Reference</span><span class="font-bold" style="color:var(--text)">${ref}</span></div>
-       <div class="flex justify-between"><span class="font-bold uppercase text-[9px]" style="color:var(--text-3)">Account</span><span style="color:var(--text-2)">${a.name}</span></div>
-       <div class="flex justify-between"><span class="font-bold uppercase text-[9px]" style="color:var(--text-3)">Card</span><span style="color:var(--text-2)">${a.card}</span></div>
-       <div class="flex justify-between"><span class="font-bold uppercase text-[9px]" style="color:var(--text-3)">Date</span><span style="color:var(--text-2)">${now}</span></div>
-       <div class="flex justify-between"><span class="font-bold uppercase text-[9px]" style="color:var(--text-3)">Status</span><span class="font-bold" style="color:var(--primary)">CONFIRMED</span></div>
-     </div>
-     <button onclick="resetHome()" class="w-full mt-3 py-2.5 rounded-xl text-sm font-bold transition" style="background:var(--primary); color:#fff">Done</button>`);
-  islandShow('Payment complete ✓','fa-circle-check','var(--primary)',3500);
-  ST.flow = null; ST.acct = null; ST.pin = '';
-}
-
-function doAction(msg, icon, color, withConfirm){
-  islandShow(msg, icon, color || 'var(--primary)', 3500);
-  if(withConfirm){
-    setTimeout(() => {
-      addRaw(`
-        <div class="msg-bot-wrap mt-3">
-          <div class="msg-bot-avatar" style="background:linear-gradient(135deg, var(--primary), var(--lime));"><i class="fa-solid fa-check"></i></div>
-          <div class="msg-bot-body">
-            <div class="font-semibold" style="color:var(--text)">${msg}</div>
-            <div class="text-[12.5px] mt-1" style="color:var(--text-3)">A tracking reference has been logged. Confirmation sent to your registered email.</div>
-          </div>
-        </div>`);
-    }, 900);
-  }
-}
-
-/* ════════════════════════════
-   REAL AI STREAMING
-════════════════════════════ */
-async function streamAI(userText){
-  // Push history
-  ST.history.push({role:'user', content:userText});
-
-  // Placeholder bot bubble
-  const id = 'ai-'+Date.now();
-  addRaw(`
-    <div class="msg-bot-wrap mt-3" id="${id}-wrap">
-      <div class="msg-bot-avatar"><i class="fa-solid fa-robot"></i></div>
-      <div class="msg-bot-body" id="${id}">
-        <span class="typing"><span></span><span></span><span></span></span>
-      </div>
-    </div>`);
-
-  let acc = '';
-  const target = document.getElementById(id);
-
-  try{
-    const res = await fetch(NEXUS.endpoint, {
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'Authorization':'Bearer '+NEXUS.key
-      },
-      body: JSON.stringify({
-        model: NEXUS.model,
-        messages: [
-          {role:'system', content: SYSTEM_PROMPT},
-          ...ST.history.slice(-8)
-        ],
-        stream: true,
-        max_tokens: 500,
-        temperature: 0.7
-      })
-    });
-    if(!res.ok){
-      const err = await res.text();
-      throw new Error('AI error: '+res.status+' — '+err.slice(0,120));
-    }
-    const reader = res.body.getReader();
-    const dec = new TextDecoder();
-    let buf = '';
-    islandHide();
-    while(true){
-      const {done, value} = await reader.read();
-      if(done) break;
-      buf += dec.decode(value, {stream:true});
-      const lines = buf.split('\n');
-      buf = lines.pop();
-      for(const ln of lines){
-        if(!ln.startsWith('data:')) continue;
-        const data = ln.slice(5).trim();
-        if(!data || data==='[DONE]') continue;
-        try{
-          const obj = JSON.parse(data);
-          const delta = obj.choices?.[0]?.delta?.content || '';
-          if(delta){
-            acc += delta;
-            target.innerHTML = mdLite(acc);
-            scrollDown();
-          }
-        } catch(e){}
-      }
-    }
-    ST.history.push({role:'assistant', content: acc});
-  } catch(err){
-    target.innerHTML = `
-      <p>I'm having trouble reaching my services right now. Here's what I can still help with right away:</p>
-      <ul>
-        <li><strong>Schedule</strong> — "When is my next pickup"</li>
-        <li><strong>Truck Tracker</strong> — "Track the closest truck"</li>
-        <li><strong>Report</strong> — "Report illegal dumping"</li>
-        <li><strong>Pay</strong> — "Pay commercial bill"</li>
-      </ul>
-      <p class="text-xs mt-2" style="color:var(--text-3)"><em>${escapeHtml(String(err).slice(0,120))}</em></p>`;
-    islandHide();
-  }
-}
-
-/* ─── tiny markdown (bold, italic, lists, line breaks) ─── */
-function mdLite(s){
-  let h = escapeHtml(s);
-  h = h.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-  h = h.replace(/(^|[^\*])\*([^*]+)\*/g, '$1<em>$2</em>');
-  h = h.replace(/`([^`]+)`/g, '<code>$1</code>');
-  // bullet lists
-  h = h.replace(/(^|\n)[-•]\s+(.+)/g, '$1<li>$2</li>');
-  h = h.replace(/(<li>[\s\S]*?<\/li>(\n|$))+/g, m => '<ul>'+m.replace(/\n/g,'')+'</ul>');
-  // paragraphs
-  h = h.split(/\n\n+/).map(p => p.startsWith('<ul>') || p.startsWith('<li>') ? p : `<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
-  return h;
-}
-
-/* ─── next pickup days helper ─── */
-function nextPickups(n){
-  const targetDays = [2,5]; // Tue, Fri
-  const out = []; const d = new Date();
-  for(let i=0; out.length<n && i<28; i++){
-    const cand = new Date(d); cand.setDate(d.getDate()+i);
-    if(targetDays.includes(cand.getDay())){
-      out.push({
-        dow: cand.toLocaleDateString('en-US',{weekday:'short'}),
-        date: cand.getDate(),
-        mo:   cand.toLocaleDateString('en-US',{month:'short'})
-      });
-    }
-  }
-  return out;
-}
-
-/* ════════════════════════════
-   CONTENT PANEL
-════════════════════════════ */
-function openPage(key, section, title){
-  document.getElementById('cp-title').textContent = title;
-  document.getElementById('cp-section').textContent = section;
-  document.getElementById('cp-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('cp-body').innerHTML = `
-    <div class="flex flex-col items-center justify-center h-64 gap-3">
-      <div class="w-8 h-8 border-2 rounded-full anim-spin" style="border-color:var(--border); border-top-color:var(--primary)"></div>
-      <div class="text-sm" style="color:var(--text-3)">Loading ${title}…</div>
-    </div>`;
-  setTimeout(() => (RENDERS[key] || renderDefault)(key, title), 220);
-}
-function closePanel(){
-  document.getElementById('cp-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function pHdr(title, sub){
-  return `<div class="mb-7">
-    <h2 class="font-display font-extrabold text-[1.8rem] sm:text-[2.1rem] leading-tight mb-2" style="color:var(--text)">${title}</h2>
-    <p class="text-[13.5px] max-w-xl leading-relaxed" style="color:var(--text-3)">${sub}</p>
-  </div>`;
-}
-
-const RENDERS = {
-
-  schedule(){
-    const body = document.getElementById('cp-body');
-    body.innerHTML = pHdr('Collection Schedule','Look up garbage collection days for any community in Jamaica. NSWMA schedules update quarterly.')+
-      `<div class="relative mb-4">
-         <input class="p-inp pl-10" placeholder="Search your community or parish…" id="sch-search" oninput="filterSchedules(this.value)">
-         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-sm" style="color:var(--text-3)"></i>
-       </div>
-       <div id="sch-list" class="flex flex-col gap-2"></div>`;
-    renderScheduleList(SCHEDULES);
-  },
-
-  tracker(){
-    document.getElementById('cp-body').innerHTML = pHdr('Live Truck Tracker','Real-time positions, routes, and ETAs for NSWMA fleet across all four regions.')+
-      `<div class="rounded-2xl overflow-hidden border mb-5 relative" style="border-color:var(--border); background:var(--surface-2); height:200px;">
-         <div style="position:absolute;inset:0;background:
-           radial-gradient(260px 120px at 22% 45%, var(--primary-lt) 0%, transparent 60%),
-           radial-gradient(180px 100px at 68% 32%, var(--accent-lt) 0%, transparent 60%),
-           radial-gradient(220px 110px at 82% 72%, var(--info-lt) 0%, transparent 60%),
-           repeating-linear-gradient(45deg, var(--border) 0 1px, transparent 1px 28px),
-           repeating-linear-gradient(-45deg, var(--border) 0 1px, transparent 1px 28px);"></div>
-         <div class="absolute top-3 left-3 text-[10px] font-bold px-2 py-1 rounded-md" style="background:var(--surface); color:var(--text); border:1px solid var(--border)">
-           <i class="fa-solid fa-satellite-dish" style="color:var(--primary)"></i> ${TRUCKS.length} trucks live
-         </div>
-         <div class="absolute top-3 right-3 badge b-green"><span class="w-1.5 h-1.5 rounded-full anim-pulse" style="background:var(--primary)"></span> GPS ONLINE</div>
-       </div>
-       <div class="flex gap-2 flex-wrap mb-4" id="tr-filters">
-         <button class="tab on" onclick="filterTrucks('ALL',this)">All</button>
-         <button class="tab" onclick="filterTrucks('MPM',this)">MPM</button>
-         <button class="tab" onclick="filterTrucks('SPM',this)">SPM</button>
-         <button class="tab" onclick="filterTrucks('NEPM',this)">NEPM</button>
-         <button class="tab" onclick="filterTrucks('WPM',this)">WPM</button>
-       </div>
-       <div id="tr-list" class="flex flex-col gap-2"></div>`;
-    renderTruckList(TRUCKS);
-  },
-
-  report(){
-    document.getElementById('cp-body').innerHTML = pHdr('Report an Issue','Missed pickups, illegal dumping, and littering all flow directly to NSWMA enforcement and operations teams.')+
-      `<div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
-         ${[
-           ['Missed Pickup','fa-truck-plane','primary','Report a collection the truck missed on your day.','Report a missed pickup'],
-           ['Illegal Dumping','fa-dumpster','accent','Flag dumped waste so NSWMA enforcement can investigate.','Report illegal dumping'],
-           ['Littering','fa-trash','info','Overflow bins, scattered litter, street-side debris.','Report littering']
-         ].map(([t,i,c,d,q]) => `
-           <div class="p-card tappable" onclick="closePanel();setTimeout(()=>triggerApplet('${q}'),300)">
-             <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style="background:var(--${c}-lt); color:var(--${c})">
-               <i class="fa-solid ${i}"></i>
-             </div>
-             <div class="font-bold text-sm mb-1" style="color:var(--text)">${t}</div>
-             <div class="text-[12px] leading-relaxed" style="color:var(--text-3)">${d}</div>
-             <div class="mt-3 text-[11px] font-bold" style="color:var(--primary)">Open →</div>
-           </div>
-         `).join('')}
-       </div>
-       <div class="p-card">
-         <div class="text-[10px] font-bold tracking-wider uppercase mb-2" style="color:var(--text-3)">Emergency hotline</div>
-         <div class="flex items-center gap-3">
-           <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background:var(--danger-lt); color:var(--danger)">
-             <i class="fa-solid fa-phone"></i>
-           </div>
-           <div class="flex-1">
-             <div class="font-display font-bold text-xl" style="color:var(--text)">1-888-NSWMA-00</div>
-             <div class="text-[11px]" style="color:var(--text-3)">24/7 · toll-free across Jamaica</div>
-           </div>
-         </div>
-       </div>`;
-  },
-
-  commercial(){
-    document.getElementById('cp-body').innerHTML = pHdr('Commercial Billing','NSWMA commercial clients can pay disposal fees online, 24/7. Accounts update quarterly.')+
-      `<div class="p-card mb-4" style="background:var(--primary-lt); border-color:color-mix(in srgb, var(--primary) 30%, transparent);">
-         <div class="flex gap-3 items-center">
-           <i class="fa-solid fa-bolt text-xl" style="color:var(--primary)"></i>
-           <div class="flex-1">
-             <div class="font-bold text-sm" style="color:var(--text)">Pay via Pulse AI — under 60 seconds</div>
-             <div class="text-[11.5px] mt-0.5" style="color:var(--text-3)">Chat-native payment with GovID PIN. Demo: <code>2001234</code> · PIN <code>0000</code></div>
-           </div>
-           <button onclick="closePanel();setTimeout(()=>triggerApplet('Pay my commercial bill'),300)" class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap" style="background:var(--primary); color:#fff">
-             Pay Now
-           </button>
-         </div>
-       </div>
-       <div class="p-card mb-4">
-         <div class="text-[10px] uppercase font-bold tracking-wider mb-3" style="color:var(--text-3)">Bill Query</div>
-         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-           <input class="p-inp" placeholder="Account number">
-           <input class="p-inp" placeholder="Business name">
-           <button class="py-3 rounded-xl text-sm font-bold" style="background:var(--primary); color:#fff">Search</button>
-         </div>
-       </div>
-       <div class="overflow-x-auto rounded-2xl border" style="border-color:var(--border)">
-         <table class="p-table"><thead><tr><th>Service Class</th><th>Description</th><th>Rate (J$)</th><th>Min Charge</th></tr></thead><tbody>
-         ${[
-           ['C1','Small business (daily avg &lt; 50 kg)','J$4,200/mo','—'],
-           ['C2','Medium commercial (50–200 kg)','J$9,800/mo','J$2,400'],
-           ['C3','Large commercial (200–500 kg)','J$21,500/mo','J$4,800'],
-           ['C4','Hospitality / food service','J$38,000/mo','J$8,200'],
-           ['C5','Industrial / construction','Per-container','J$12,000'],
-           ['Special','Bulky / hazardous','Per pickup','—']
-         ].map(([c,d,r,m]) => `<tr><td><span class="text-[10px] font-bold" style="color:var(--primary)">${c}</span></td><td>${d}</td><td class="font-bold" style="color:var(--text)">${r}</td><td style="color:var(--text-3)">${m}</td></tr>`).join('')}
-         </tbody></table>
-       </div>`;
-  },
-
-  bulk(){
-    document.getElementById('cp-body').innerHTML = pHdr('Bulk & Special Pickup','Schedule a bulk-waste collection for furniture, appliances, e-waste, or construction debris that does not fit standard bins.')+
-      `<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
-         ${[['fa-couch','Furniture'],['fa-blender','Appliances'],['fa-tv','E-waste'],['fa-hard-hat','Construction']].map(([i,t]) => `
-           <div class="p-card text-center">
-             <i class="fa-solid ${i} text-2xl mb-2" style="color:var(--primary)"></i>
-             <div class="font-bold text-sm" style="color:var(--text)">${t}</div>
-           </div>`).join('')}
-       </div>
-       <div class="p-card">
-         <div class="font-bold text-sm mb-4" style="color:var(--text)">Request a Pickup</div>
-         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
-           <input class="p-inp" placeholder="Full name">
-           <input class="p-inp" placeholder="Phone number">
-         </div>
-         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
-           <select class="p-inp">
-             <option>Parish…</option>
-             <option>Kingston &amp; St Andrew</option><option>St Catherine</option><option>St James</option><option>St Ann</option><option>Manchester</option><option>Clarendon</option>
-           </select>
-           <input class="p-inp" placeholder="Community / zone">
-         </div>
-         <input class="p-inp mb-3" placeholder="Full pickup address">
-         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
-           <select class="p-inp">
-             <option>Item category…</option>
-             <option>Furniture</option><option>Appliances</option><option>E-waste</option><option>Construction debris</option>
-           </select>
-           <input class="p-inp" type="date">
-         </div>
-         <textarea class="p-inp mb-3" rows="3" placeholder="Describe the items (approximate size, count, any special handling needed)" style="resize:vertical;min-height:90px"></textarea>
-         <button onclick="this.textContent='✓ Pickup requested';this.disabled=true;this.style.opacity='.7'" class="w-full py-3 rounded-xl text-sm font-bold transition" style="background:var(--primary); color:#fff">Request Pickup</button>
-       </div>`;
-  },
-
-  recycling(){
-    document.getElementById('cp-body').innerHTML = pHdr('Recycling Guide','What NSWMA accepts for recycling in Jamaica, how to prepare each material, and where to drop off special items.')+
-      `<div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-5">
-         ${[
-           ['PET Plastic Bottles','fa-bottle-water','primary','Rinse, remove caps, crush flat. Accepted: water, soda, juice bottles. Not accepted: oil bottles, bleach bottles.'],
-           ['Paper & Cardboard','fa-newspaper','info','Flatten cardboard, remove tape. Accepted: newspapers, magazines, office paper. Not accepted: wax-coated or food-contaminated paper.'],
-           ['Glass','fa-wine-bottle','accent','Sort by colour (clear, green, brown). Rinse. Not accepted: window glass, mirrors, lightbulbs.'],
-           ['Aluminium Cans','fa-can-food','primary','Rinse, crush if possible. Accepted: beverage cans, food cans. Not accepted: aerosol cans.'],
-           ['E-waste','fa-plug','info','Monthly drop-off events. Accepted: phones, laptops, TVs, small appliances. Special event required for batteries.'],
-           ['Organics','fa-leaf','primary','Home composting encouraged. Parish pilot programmes available in Kingston & St Andrew.']
-         ].map(([t,i,c,d]) => `
-           <div class="p-card">
-             <div class="flex items-start gap-3">
-               <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:var(--${c}-lt); color:var(--${c})">
-                 <i class="fa-solid ${i}"></i>
-               </div>
-               <div>
-                 <div class="font-bold text-sm" style="color:var(--text)">${t}</div>
-                 <div class="text-[12px] mt-1 leading-relaxed" style="color:var(--text-3)">${d}</div>
-               </div>
-             </div>
-           </div>`).join('')}
-       </div>
-       <div class="p-card">
-         <div class="font-bold text-sm mb-3" style="color:var(--text)">⚠️ Never in the bin</div>
-         <div class="flex gap-2 flex-wrap">
-           ${['Wet paint','Motor oil','Fluorescent bulbs','Pesticides','Medical sharps','Tires'].map(x => `<span class="badge b-red">${x}</span>`).join('')}
-         </div>
-       </div>`;
-  },
-
-  offices(){
-    const list = [
-      {n:'MPM Kingston HQ',              a:'61½ Half Way Tree Road, Kingston 10',             p:'(876) 754-4700', h:'Mon–Fri 8am–4pm', r:'MPM'},
-      {n:'MPM Spanish Town Depot',        a:'16 Caymanas Industrial Estate, St Catherine',    p:'(876) 984-3611', h:'Mon–Fri 8am–4pm', r:'MPM'},
-      {n:'SPM May Pen Office',            a:'24 Sevens Road, May Pen, Clarendon',              p:'(876) 986-4554', h:'Mon–Fri 8am–4pm', r:'SPM'},
-      {n:'SPM Mandeville',                a:'14 Perth Road, Mandeville, Manchester',           p:'(876) 962-8105', h:'Mon–Fri 8am–4pm', r:'SPM'},
-      {n:'NEPM Ocho Rios',                a:'Shop 12, Ocean Village Plaza, St Ann',           p:'(876) 974-2800', h:'Mon–Fri 8am–4pm', r:'NEPM'},
-      {n:'NEPM Port Antonio',             a:'6 Harbour Street, Port Antonio, Portland',       p:'(876) 993-2244', h:'Mon–Fri 8am–4pm', r:'NEPM'},
-      {n:'WPM Montego Bay',               a:'Fustic Road, Montego Bay, St James',              p:'(876) 952-5017', h:'Mon–Fri 8am–4pm', r:'WPM'},
-      {n:'WPM Savanna-la-Mar',            a:'Barracks Road, Sav-la-Mar, Westmoreland',         p:'(876) 955-2018', h:'Mon–Fri 8am–4pm', r:'WPM'}
-    ];
-    document.getElementById('cp-body').innerHTML = pHdr('Parish Offices','All NSWMA regional and parish offices island-wide. Walk-in hours Monday–Friday.')+
-      `<div class="relative mb-4">
-         <input class="p-inp pl-10" placeholder="Search offices…" oninput="filterOffices(this.value)">
-         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-sm" style="color:var(--text-3)"></i>
-       </div>
-       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="off-list">
-         ${list.map(o => `
-           <div class="p-card off-card" data-search="${(o.n+' '+o.a+' '+o.r).toLowerCase()}">
-             <div class="flex justify-between items-start mb-2">
-               <div class="font-bold text-sm" style="color:var(--text)">${o.n}</div>
-               <span class="badge b-green">${o.r}</span>
-             </div>
-             <div class="text-[12px] leading-relaxed mb-2" style="color:var(--text-3)">${o.a}</div>
-             <div class="flex gap-4 text-[11px]">
-               <span style="color:var(--text-2)"><i class="fa-solid fa-clock text-[10px]"></i> ${o.h}</span>
-               <span class="font-medium" style="color:var(--primary)"><i class="fa-solid fa-phone text-[10px]"></i> ${o.p}</span>
-             </div>
-           </div>`).join('')}
-       </div>`;
-  },
-
-  faq(){
-    const faqs = [
-      {q:'When is garbage collected in my area?',          a:'Collection days depend on your zone. Type "When is my next pickup" in the Pulse AI bar above, or open the Schedule page to search your community.'},
-      {q:'What can\'t I put in my regular garbage bin?',    a:'Keep out: motor oil, wet paint, pesticides, medical sharps, fluorescent bulbs, tires, large furniture, and e-waste. For most of these, request a special bulk pickup.'},
-      {q:'How do I report illegal dumping?',                a:'Use the Report Hub or type "Report illegal dumping" in the Pulse AI bar. You can attach a photo and pin the exact location. Reports go directly to the enforcement unit.'},
-      {q:'How do I get a new garbage bin?',                 a:'Request a bin through your Parish office, or ask Pulse AI: "I need a new bin". NSWMA issues one standard bin per eligible household free of charge, subject to stock.'},
-      {q:'Is there a fee for bulk pickup?',                 a:'Residential bulk pickup is generally free for reasonable household quantities. Larger loads, construction debris, and commercial bulk pickups are charged per-load.'},
-      {q:'What happens during a hurricane?',                a:'Collections pause 24 hours before landfall and resume 24–48 hours after, depending on road conditions. Secure bins indoors. Storm-debris pickup is prioritised in recovery.'},
-      {q:'Can I recycle from my home?',                     a:'Yes — pilot recycling programmes run in parts of Kingston & St Andrew. Drop-off points for plastic, glass, paper, and e-waste are listed in the Recycling Guide.'},
-      {q:'Who do I call for commercial billing questions?', a:'Call 1-888-NSWMA-00 option 2, or pay directly through the Commercial Billing page with your account number.'}
-    ];
-    document.getElementById('cp-body').innerHTML = pHdr('Frequently Asked Questions','Quick answers to common NSWMA service, schedule, and billing questions.')+
-      `<div class="flex flex-col gap-2">
-         ${faqs.map((f,i) => `
-           <div class="p-card faq-item" id="fq${i}">
-             <div class="flex justify-between items-center cursor-pointer" onclick="document.getElementById('fq${i}').classList.toggle('open')">
-               <span class="text-sm font-semibold pr-4 leading-snug" style="color:var(--text)">${f.q}</span>
-               <i class="fa-solid fa-chevron-down faq-chev text-xs flex-shrink-0" style="color:var(--text-3)"></i>
-             </div>
-             <div class="faq-body">
-               <p class="text-[13px] leading-relaxed" style="color:var(--text-2)">${f.a}</p>
-             </div>
-           </div>`).join('')}
-       </div>`;
-  },
-
-  zone(){
-    document.getElementById('cp-body').innerHTML = pHdr('Zone Dashboard','Detailed view of your assigned collection zone, including performance metrics and recent history.')+
-      `<div class="splash-stripe mb-5 flex items-center justify-between px-5 py-4" style="height:auto; color:#fff">
-         <div>
-           <div class="text-[10px] uppercase tracking-wider opacity-80">Your Zone</div>
-           <div class="font-display font-extrabold text-2xl">K6A · Liguanea</div>
-           <div class="text-[11px] opacity-80 mt-1">MPM · Kingston &amp; St Andrew</div>
-         </div>
-         <div class="text-right">
-           <div class="text-[10px] uppercase tracking-wider opacity-80">Clean Rating</div>
-           <div class="font-display font-extrabold text-3xl">A</div>
-         </div>
-       </div>
-       <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5">
-         ${[
-           ['Last 30 Days','100%','On-time rate',' fa-chart-line','primary'],
-           ['Reports Resolved','12/12','Response &lt; 48h','fa-circle-check','primary'],
-           ['Active Advisories','0','Zone all clear','fa-shield-check','primary']
-         ].map(([l,v,h,i,c]) => `
-           <div class="p-card">
-             <div class="flex items-center gap-3 mb-2">
-               <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:var(--${c}-lt); color:var(--${c})"><i class="fa-solid ${i} text-xs"></i></div>
-               <div class="text-[10px] uppercase font-bold tracking-wider" style="color:var(--text-3)">${l}</div>
-             </div>
-             <div class="font-display font-extrabold text-2xl" style="color:var(--text)">${v}</div>
-             <div class="text-[11px]" style="color:var(--text-3)">${h}</div>
-           </div>`).join('')}
-       </div>
-       <div class="p-card">
-         <div class="font-bold text-sm mb-4" style="color:var(--text)">Recent Activity</div>
-         ${[
-           ['Yesterday 06:42','Pickup completed','MPM-T-205','primary','fa-check'],
-           ['Fri 24 Feb 06:38','Pickup completed','MPM-T-205','primary','fa-check'],
-           ['Tue 20 Feb 06:44','Pickup completed','MPM-T-199','primary','fa-check'],
-           ['Fri 17 Feb 07:02','Late pickup — truck delayed 32 min','MPM-T-205','accent','fa-clock']
-         ].map(([t,e,tr,c,i]) => `
-           <div class="flex items-center gap-3 py-2.5" style="border-bottom:1px solid var(--border)">
-             <div class="w-7 h-7 rounded-full flex items-center justify-center" style="background:var(--${c}-lt); color:var(--${c})">
-               <i class="fa-solid ${i} text-[10px]"></i>
-             </div>
-             <div class="flex-1 min-w-0">
-               <div class="text-[12.5px] font-medium truncate" style="color:var(--text)">${e}</div>
-               <div class="text-[10.5px]" style="color:var(--text-3)">${t} · ${tr}</div>
-             </div>
-           </div>
-         `).join('')}
-       </div>`;
-  },
-
-  contact(){
-    document.getElementById('cp-body').innerHTML = pHdr('Contact NSWMA','Reach the National Solid Waste Management Authority — we\'re here to help.')+
-      `<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-         <div class="flex flex-col gap-2">
-           ${[
-             ['Toll Free','1-888-NSWMA-00 (1-888-679-6200)','fa-phone'],
-             ['Head Office','(876) 754-4700','fa-phone'],
-             ['Email','info@nswma.gov.jm','fa-envelope'],
-             ['Address','61½ Half Way Tree Road, Kingston 10, Jamaica','fa-location-dot'],
-             ['Hours','Mon–Fri 8:00 am – 4:30 pm','fa-clock']
-           ].map(([l,v,i]) => `
-             <div class="p-card">
-               <div class="flex gap-3 items-start">
-                 <i class="fa-solid ${i} text-sm mt-1" style="color:var(--primary)"></i>
-                 <div class="flex-1">
-                   <div class="text-[10px] uppercase font-bold tracking-wider" style="color:var(--text-3)">${l}</div>
-                   <div class="text-sm font-medium mt-0.5" style="color:var(--text)">${v}</div>
-                 </div>
-               </div>
-             </div>`).join('')}
-         </div>
-         <div class="p-card">
-           <div class="font-bold text-sm mb-4" style="color:var(--text)">Send a Message</div>
-           <input class="p-inp mb-3" placeholder="Your name">
-           <input class="p-inp mb-3" placeholder="Email" type="email">
-           <input class="p-inp mb-3" placeholder="Subject">
-           <textarea class="p-inp mb-3" rows="4" placeholder="How can we help?" style="min-height:120px"></textarea>
-           <button onclick="this.textContent='✓ Sent';this.disabled=true;this.style.opacity='.7'" class="w-full py-3 rounded-xl text-sm font-bold" style="background:var(--primary); color:#fff">Send Message</button>
-         </div>
-       </div>`;
-  },
-
-  privacy(){
-    document.getElementById('cp-body').innerHTML = pHdr('Privacy Policy','How the NSWMA collects, uses, and protects your personal data when you use Pulse and other NSWMA services.')+
-      ['<strong>Information we collect:</strong> Your name, address, account/zone details, contact information, and payment data when you use NSWMA services or this app. Location data is used strictly for pickup and incident-report routing.',
-       '<strong>How we use it:</strong> To manage collection schedules, dispatch trucks, process commercial payments, respond to reports, send service notifications, and comply with our obligations under the Data Protection Act (2020).',
-       '<strong>Data sharing:</strong> We do not sell personal data. Information may be shared with Parish Councils, the Ministry of Local Government, NEPA, and law enforcement where required by law or for waste-enforcement action.',
-       '<strong>Security:</strong> NSWMA uses technical and organisational measures, including encryption at rest and in transit, to protect your information.',
-       '<strong>Your rights:</strong> You may access, correct, or request deletion of your personal data by writing to info@nswma.gov.jm or submitting an ATI request under the Access to Information Act.'
-      ].map(p => `<p class="text-[13.5px] leading-relaxed mb-5" style="color:var(--text-2)">${p}</p>`).join('');
-  },
-
-  sitemap(){
-    document.getElementById('cp-body').innerHTML = pHdr('Sitemap','Complete directory of NSWMA Pulse services and pages.')+
-      `<div class="grid grid-cols-2 md:grid-cols-3 gap-5">
-         ${[
-           ['Services', [['schedule','Schedule'],['tracker','Truck Tracker'],['report','Reports'],['bulk','Bulk Pickup'],['recycling','Recycling']]],
-           ['Billing',  [['commercial','Commercial'],['faq','Billing FAQs']]],
-           ['Info',     [['offices','Parish Offices'],['zone','Zone Dashboard'],['faq','FAQs'],['contact','Contact']]],
-           ['Legal',    [['privacy','Privacy'],['sitemap','Sitemap']]]
-         ].map(([s, links]) => `
-           <div>
-             <div class="text-[10px] font-bold uppercase tracking-wider mb-3" style="color:var(--primary)">${s}</div>
-             <ul class="flex flex-col gap-2">
-               ${links.map(([k,l]) => `<li><a href="#" onclick="openPage('${k}','Resources','${l}');return false;" class="text-sm hover:underline" style="color:var(--text-2)">${l}</a></li>`).join('')}
-             </ul>
-           </div>`).join('')}
-       </div>`;
-  }
-};
-
-function renderDefault(key, title){
-  document.getElementById('cp-body').innerHTML = pHdr(title,'This section is part of NSWMA Pulse.')+
-    `<div class="p-card text-center py-16">
-       <i class="fa-solid fa-recycle text-4xl mb-4" style="color:var(--primary)"></i>
-       <div class="text-sm" style="color:var(--text-3)">Content for this section will be available soon.</div>
-     </div>`;
-}
-
-/* ─── schedule filters ─── */
-function renderScheduleList(list){
-  const el = document.getElementById('sch-list');
-  if(!el) return;
-  el.innerHTML = list.length ? list.map(s => `
-    <div class="p-card flex items-center gap-4">
-      <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:var(--primary-lt); color:var(--primary)">
-        <i class="fa-solid fa-calendar-days"></i>
-      </div>
-      <div class="flex-1 min-w-0">
-        <div class="flex items-center gap-2 mb-0.5">
-          <div class="font-bold text-sm" style="color:var(--text)">${s.zone}</div>
-          <span class="badge b-green">${s.region}</span>
-        </div>
-        <div class="text-[11.5px]" style="color:var(--text-3)">${s.parish} · ${s.time}</div>
-      </div>
-      <div class="text-right flex-shrink-0">
-        <div class="font-display font-bold text-sm" style="color:var(--text)">${s.days}</div>
-      </div>
     </div>
-  `).join('') : `<div class="p-card text-center py-10" style="color:var(--text-3)">No zones match your search.</div>`;
-}
-function filterSchedules(q){
-  const term = q.toLowerCase().trim();
-  if(!term) return renderScheduleList(SCHEDULES);
-  renderScheduleList(SCHEDULES.filter(s => (s.zone+' '+s.parish+' '+s.region).toLowerCase().includes(term)));
-}
 
-/* ─── truck filters ─── */
-function renderTruckList(list){
-  const el = document.getElementById('tr-list');
-  if(!el) return;
-  el.innerHTML = list.map(t => `
-    <div class="p-card flex items-center gap-3">
-      <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:var(--primary-lt); color:var(--primary)">
-        <i class="fa-solid fa-truck"></i>
-      </div>
-      <div class="flex-1 min-w-0">
-        <div class="flex items-center gap-2 mb-0.5">
-          <div class="font-bold text-sm" style="color:var(--text)">${t.id}</div>
-          <span class="badge b-green">${t.region}</span>
+    <!-- CONTACT AGENT MODAL -->
+    <div id="agentModal" class="modal-overlay">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeAgentModal()">×</button>
+            <div class="agent-icon">👤</div>
+            <div class="agent-role">Dedicated Prize Agent</div>
+            <div class="agent-name">Bill Bradley</div>
+            
+            <div style="margin: 25px 0;">
+                <!-- Phone number removed available hours per request -->
+                <div class="agent-phone">623-282-4927</div>
+            </div>
+            
+            <!-- Link initiates a phone call on mobile devices -->
+            <a href="tel:6232824927" class="call-btn">Tap to Call Now</a>
         </div>
-        <div class="text-[11.5px]" style="color:var(--text-3)">${t.route} · <span class="capitalize">${t.status}</span> · Crew ${t.crew}</div>
-      </div>
-      <div class="text-right flex-shrink-0">
-        <div class="text-[9px] uppercase font-bold tracking-wider" style="color:var(--text-3)">ETA</div>
-        <div class="font-display font-bold text-sm" style="color:var(--text)">${t.eta}</div>
-      </div>
     </div>
-  `).join('');
-}
-function filterTrucks(region, btn){
-  document.querySelectorAll('#tr-filters .tab').forEach(t => t.classList.remove('on'));
-  if(btn) btn.classList.add('on');
-  renderTruckList(region==='ALL' ? TRUCKS : TRUCKS.filter(t => t.region===region));
-}
 
-/* ─── office filter ─── */
-function filterOffices(q){
-  const term = q.toLowerCase().trim();
-  document.querySelectorAll('.off-card').forEach(c => {
-    c.style.display = !term || c.dataset.search.includes(term) ? '' : 'none';
-  });
-}
+    <!-- TAX INFO / PRIZE DETAILS MODAL -->
+    <div id="taxModal" class="modal-overlay">
+        <div class="modal-card" style="max-width: 600px; text-align: left;">
+            <button class="modal-close" onclick="closeTaxModal()">×</button>
+            <h3 style="color: #ffc72c; margin-bottom: 20px; text-align: center; font-family: 'Montserrat', sans-serif;">Tax Information & IRS Withholding</h3>
+            
+            <p style="font-size: 14px; margin-bottom: 20px; color: #e0e0e0; line-height: 1.6;">As a legitimate lottery organization operating within the United States, we are required by law to adhere strictly to the Internal Revenue Service (IRS) tax codes regarding gambling winnings and prizes.</p>
+            
+            <h4 style="color: white; margin-bottom: 10px; border-bottom: 1px solid #444; padding-bottom: 5px;">Federal Tax Withholding</h4>
+            <p style="font-size: 14px; margin-bottom: 15px; color: #bbb; line-height: 1.6;">Lottery agencies are required to withhold 24% of any prize over $5,000 for federal taxes immediately upon payout.</p>
+            <ul style="font-size: 14px; color: #bbb; margin-left: 20px; margin-bottom: 25px; line-height: 1.8;">
+                <li><strong>Gross Cash Prize:</strong> $8,500,000.00</li>
+                <li><strong>Federal Tax Withholding (24%):</strong> -$2,040,000.00</li>
+                <li><strong>Net Cash Payout:</strong> $6,460,000.00</li>
+            </ul>
+            
+            <h4 style="color: white; margin-bottom: 10px; border-bottom: 1px solid #444; padding-bottom: 5px;">Taxation on the Vehicle</h4>
+            <p style="font-size: 14px; margin-bottom: 25px; color: #bbb; line-height: 1.6;">The 2024 Mercedes-Benz GLE Coupe is considered "non-cash income." The Fair Market Value (FMV) of this vehicle will be reported on your IRS Form W-2G and added to your total annual income. State-level taxes may vary depending on your permanent residence.</p>
+            
+            <div style="text-align: center;">
+                <button class="call-btn" onclick="closeTaxModal()" style="width: auto; padding: 12px 35px;">Acknowledge</button>
+            </div>
+        </div>
+    </div>
 
-/* ────── BOOT ────── */
-init();
-</script>
+    <!-- JAVASCRIPT -->
+    <script>
+        // Go back to the main login screen
+        function resetToHome() {
+            document.getElementById('view-login').style.display = 'flex';
+            document.getElementById('view-dashboard').style.display = 'none';
+            document.getElementById('view-gold-program').style.display = 'none';
+            
+            // Reset button state
+            const btn = document.getElementById('submitBtn');
+            btn.innerHTML = "Secure Verification";
+            btn.style.opacity = "1";
+            btn.style.cursor = "pointer";
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Form Submission -> Move to View 2 (Dashboard)
+        function handleLogin(event) {
+            event.preventDefault(); 
+            const btn = document.getElementById('submitBtn');
+            const nameInput = document.getElementById('fullName').value.trim();
+
+            btn.innerHTML = "Verifying Identity...";
+            btn.style.opacity = "0.8";
+            btn.style.cursor = "wait";
+
+            setTimeout(() => {
+                const firstName = nameInput.split(' ')[0] || 'Winner';
+                document.getElementById('display-name').innerText = firstName;
+
+                document.getElementById('view-login').style.display = 'none';
+                document.getElementById('view-dashboard').style.display = 'block';
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                fireMegaConfetti();
+                animateCounter("cash-counter", 0, 8500000, 2500); // Counts to 8.5M
+            }, 1500);
+        }
+
+        // Click Gold Button -> Move to View 3 (Gold Program)
+        function showGoldProgram() {
+            document.getElementById('view-dashboard').style.display = 'none';
+            document.getElementById('view-gold-program').style.display = 'block';
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            firePureGoldConfetti();
+            
+            // Wait slightly for visual impact, then count up to $5,500,000
+            setTimeout(() => {
+                animateCounter("gold-counter", 0, 5500000, 2500);
+            }, 500);
+        }
+
+        // --- Modal Controls ---
+        
+        // Agent Modal
+        function showAgentModal(e) {
+            if(e) e.preventDefault();
+            document.getElementById('agentModal').classList.add('active');
+        }
+        function closeAgentModal() {
+            document.getElementById('agentModal').classList.remove('active');
+        }
+
+        // Tax Info Modal
+        function showTaxModal(e) {
+            if(e) e.preventDefault();
+            document.getElementById('taxModal').classList.add('active');
+        }
+        function closeTaxModal() {
+            document.getElementById('taxModal').classList.remove('active');
+        }
+
+        // Generic Animated Counter Logic
+        function animateCounter(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const currentVal = Math.floor(easeOut * (end - start) + start);
+                
+                obj.innerHTML = "$" + currentVal.toLocaleString('en-US');
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    obj.innerHTML = "$" + end.toLocaleString('en-US'); // End exact
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Mega Millions Confetti (Blue/Red/Yellow/White)
+        function fireMegaConfetti() {
+            var duration = 4.5 * 1000; 
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100, colors:['#0056a8', '#ffc72c', '#ffffff', '#d50032'] };
+
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) { return clearInterval(interval); }
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+
+        // Pure Gold Confetti for View 3
+        function firePureGoldConfetti() {
+            var duration = 4 * 1000; 
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 35, spread: 360, ticks: 80, zIndex: 100, colors:['#d4af37', '#ffea75', '#ffc72c', '#ffffff'] };
+
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) { return clearInterval(interval); }
+                var particleCount = 60 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.2, 0.4), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.6, 0.8), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+    </script>
 </body>
 </html>
